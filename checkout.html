@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Välkommen till Sveriges bästa elektronik-webhandel! Vi har de senaste modellerna från Samsung, Acer, Apple mm till låga priser och snabba leveranser!" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="style/style.css">
+    <title>Kassa</title>
+</head>
+
+<body class="whiteBackground">
+    <header id="headerContainer">
+        <div class="headerContainer1">
+            <nav class="header1">
+                <a href="index.html">
+                    <img class="menuIcon" src="style/img/homeIcon9.png" />
+                </a>
+                <a href="soundVideo.html">LJUD & BILD</a>
+                <a href="mobilePhones.html">MOBIL, TELE & GPS</a>
+                <a href="computers.html">DATORER & TILLBEHÖR</a>
+                <a href="photoVideo.html">FOTO & VIDEO</a>
+                <a href="gaming.html">GAMING</a>
+                <a class="here" href="checkout.html">
+                    <img class="menuIcon" src="style/img/cartIcon1.png" />
+                </a>
+            </nav>
+            <form id="searchBox">
+                <input class="searchBox1" type="text" placeholder="&#8981 SÖK" />
+            </form>
+            <nav class="menuSmallScreen">
+                <a href="index.html">
+                    <img src="style/img/homeIcon8.png" />
+                </a>
+                <a href="menuSmallScreen.html">
+                    <img src="style/img/menuIcon2.png" />
+                </a>
+                <a class="here2" href="checkout.html">
+                    <img src="style/img/cartIcon5.png" />
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="mainCheckout">
+
+        <section class="addedToCart">
+            <h2>VARUKORG</h2>
+
+            <table class="checkoutTable">
+                <thead>
+                    <th>PRODUKT</th>
+                    <th>BESKRIVNING</th>
+                    <th>FÄRG</th>
+                    <th>ANTAL</th>
+                    <th>BELOPP</th>
+                    <th>TA BORT</th>
+                </thead>
+                <tbody>
+                    <tr class="tableRow">
+                        <td>
+                            <img class="checkoutPrImg" src="style/img/tv6.jpg" />
+                        </td>
+                        <td>Sony 65" 4K UHD Smart TV
+                            <p class="ref">KD65XE9305BAE</p>
+                        </td>
+                        <td> - </td>
+                        <td>
+                            <input class="chooseNr" placeholder="1" type="number" min="1" max="10" />
+                        </td>
+                        <td>22 990 SEK</td>
+                        <td>
+                            <a href="">
+                                <img src="style/img/delete2.png" />
+                            </a>
+                        </td>
+                    </tr>
+                    <tr class="tableRow">
+                        <td>
+                            <img class="checkoutPrImg" src="style/img/mobile6.jpg" />
+                        </td>
+                        <td>iPhone X smartphone 256GB
+                            <p class="ref">APPIPX256SI</p>
+                        </td>
+                        <td>(silver)</td>
+                        <td>
+                            <input class="chooseNr" placeholder="1" type="number" min="1" max="10" />
+                        </td>
+                        <td>13 190 SEK</td>
+                        <td>
+                            <a href="">
+                                <img src="style/img/delete2.png" />
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="total1">
+                <div class="numberProducts">
+                    <p>Totalt antal produkter:</p>
+                    <p>2</p>
+                </div>
+                <div class="shippingFee">
+                    <p>Uppskattad fraktavgift:</p>
+                    <p>0,00 SEK</p>
+                </div>
+                <div class="totalPrice">
+                    <b>Totalbelopp:</b>
+                    <div>
+                        <p>36 180 SEK</p>
+                    </div>
+                </div>
+                <p>*Inklusive moms</p>
+            </div>
+
+            <div class="checkoutProduct">
+                <div>
+                    <img class="checkoutPrImg" src="style/img/computer4.jpg" />
+                </div>
+                <div>
+                    <p class="name">MacBook Air 13.3" MQ32</p>
+                    <p class="ref">MACAMQD32KSA</p>
+                    <p> - </p>
+                    <input class="chooseNr" placeholder="1" type="number" min="1" max="10" />
+                </div>
+                <div>
+                    <a href="">
+                        <img class="trashImg" src="style/img/delete2.png" />
+                    </a>
+                    <p class="price">9 990 SEK</p>
+                </div>
+            </div>
+
+            <div class="checkoutProduct">
+                <div>
+                    <img class="checkoutPrImg" src="style/img/mobile6.jpg" />
+                </div>
+                <div>
+                    <p class="name">iPhone X smartphone 256GB</p>
+                    <p class="ref">APPIPX256SI</p>
+                    <p> (silver) </p>
+                    <input class="chooseNr" placeholder="1" type="number" min="1" max="10" />
+                </div>
+                <div>
+                    <a href="">
+                        <img class="trashImg" src="style/img/delete2.png" />
+                    </a>
+                    <p class="price">13 190 SEK</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="deliveryMethod">
+            <h1>FRAKTSÄTT</h1>
+
+            <form action="">
+
+            </form>
+
+            <div class="deliveryChoise">
+                <label class="radioButton">
+                    <input type="radio" class="option-input radio" name="example" />
+                    <div>
+                        <h3>Hämta ut i vår butik:</h3>
+                        <p>På 4-6 arbetsdagar</p>
+                    </div>
+                </label>
+                <div class="deliveryPrice">
+                    <h3>Kostnadsfri</h3>
+                </div>
+            </div>
+            <div class="deliveryChoise">
+                <label class="radioButton">
+                    <input type="radio" class="option-input radio" name="example" />
+                    <div>
+                        <h3>Standard Hem Leverans:</h3>
+                        <p>På 3-5 arbetsdagar</p>
+                        <h4>GRATIS (BESTÄLLNINGAR ÖVER 1000 SEK)</h4>
+                    </div>
+                </label>
+                <div class="deliveryPrice">
+                    <p>49,00 SEK</p>
+                </div>
+            </div>
+            <div class="deliveryChoise">
+                <label class="radioButton">
+                    <input type="radio" class="option-input radio" name="example" checked />
+                    <div>
+                        <h3>Express Hem Leverans:</h3>
+                        <p>På 1-2 arbetsdagar</p>
+                        <p></p>
+                    </div>
+                </label>
+                <div class="deliveryPrice">
+                    <p>99,00 SEK</p>
+                </div>
+            </div>
+            <div class="deliveryChoise">
+                <label class="radioButton">
+                    <input type="radio" class="option-input radio" name="example" />
+                    <div>
+                        <h3>Utlämningsställe:</h3>
+                        <p>På 3-5 arbetsdagar</p>
+                        <h4>GRATIS (BESTÄLLNINGAR ÖVER 1000 SEK)</h4>
+                    </div>
+                </label>
+                <div class="deliveryPrice">
+                    <p>49,00 SEK</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="contactInfo">
+            <form action="payment.html" class="checkout">
+                <div>
+                    <h3>KONTAKTUPPGIFTER</h3>
+                </div>
+                <input class="checkoutInput" type="text" required minlength="8" pattern="[0-9]*" placeholder="Telefonnummer*" />
+                <input class="checkoutInput" type="email" name="email" placeholder="Epost*" required />
+                <div>
+                    <h3>LEVERANSUPPGIFTER</h3>
+                </div>
+                <input class="checkoutInput" type="text" required minlength="2" maxlength="30" pattern="[a-zA-Z -åäö]*" placeholder="Förnamn*"
+                />
+                <input class="checkoutInput" type="text" required minlength="2" maxlength="30" pattern="[a-zA-Z -åäö]*" placeholder="Efternamn*"
+                />
+                <input class="checkoutInput" type="text" required minlength="3" maxlength="30" pattern="[a-zA-Z -åäö]*" placeholder="Gatuadress*"
+                />
+                <input class="checkoutInput" type="text" required minlength="1" maxlength="6" pattern="[[0-9]+ [a-zA-Z -]*]" placeholder="Husnummer*"
+                />
+                <input class="checkoutInput" type="text" required minlength="5" maxlength="5" pattern="[0-9]*" placeholder="Postnummer*"
+                />
+                <input class="checkoutInput" required minlength="2" pattern="[a-zA-Z åäö]*" placeholder="Stad*" />
+                <textarea class="checkoutText" placeholder="Övrig info" maxlength="255"></textarea>
+                <div class="checkoutButton">
+                    <input class="approvePayment" type="submit" name="submit" value="GÅ VIDARE  »" />
+                </div>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <section class="footerSection1">
+            <div class="newsLetter">
+                <p class="footerHeading1">NYHETSBREV</p>
+                <p>Få de senaste nyheterna och de senaste erbjudandena direkt i din inkorg!</p>
+                <form>
+                    <input type="email" id="email" placeholder=" ✉ Din e-postadress" required />
+                    <input type="submit" id="subscribe" value="PRENUMERERA »" />
+                </form>
+            </div>
+            <nav>
+                <p class="footerHeading2">LET'S BE SOCIAL</p>
+                <div class="socialIconContainer">
+                    <a href="https://www.instagram.com/instagram/" target="_blank">
+                        <p>INSTAGRAM</p>
+                        <img class="socialIcon" src="style/img/instagramIcon.png" />
+                    </a>
+                    <a href="https://www.facebook.com/" target="_blank">
+                        <p>FACEBOOK</p>
+                        <img class="socialIcon" src="style/img/facebookIcon.png" />
+                    </a>
+                    <a href="https://www.youtube.com/" target="_blank">
+                        <p>YOUTUBE</p>
+                        <img class="socialIcon" src="style/img/youtubeIcon.png" />
+                    </a>
+                    <a href="https://www.pinterest.se/" target="_blank">
+                        <p>PINTEREST</p>
+                        <img class="socialIcon" src="style/img/pinterestIcon.png" />
+                    </a>
+                </div>
+            </nav>
+        </section>
+        <section class="footerSection2">
+            <div class="paymentIconContainer">
+                <p class="footerHeading3">Tryggt säkert & rättvist</p>
+                <table>
+                    <tr>
+                        <td>
+                            <img class="paymentIcon" src="style/img/americanExpressIcon1b.png" />
+                        </td>
+                        <td>
+                            <img class="paymentIcon" src="style/img/visaIcon1b.png" />
+                        </td>
+                        <td>
+                            <img class="paymentIcon" src="style/img/mastercardIcon1b.png" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img class="paymentIcon" src="style/img/paypalIcon1b.png" />
+                        </td>
+                        <td>
+                            <img class="paymentIcon" src="style/img/cirrusIcon1b.png" />
+                        </td>
+                        <td>
+                            <img class="paymentIcon" src="style/img/postepayIcon1b.png" />
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div>
+                <p class="footerHeading3">Våra Privatlån</p>
+                <p>✓ Lån upp till 30 000 kr</p>
+                <p>✓ Lånebesked direkt</p>
+                <p>✓ Utan extra avgifter</p>
+                <p>✓ Fast månadskostnad</p>
+            </div>
+            <div>
+                <p class="footerHeading3">Våra Försäkringar</p>
+                <p>✓ Extra ekonomisk trygghet till dig som är kund hos oss</p>
+                <p>✓ Förmånliga försäkringar som är anpassade efter dina behov</p>
+                <p>✓ Flera är utan självrisk och skattefria</p>
+                <p>✓ Oberoende av dina övriga försäkringar</p>
+            </div>
+        </section>
+        <div class="footer_part3">
+            <section class="footerSection3">
+                <nav class="blog">
+                    <a href="blog.html" target="_blank">
+                        <p>« FÖLJ OSS PÅ VÅR BLOGG FÖR DE SENASTE NYHETERNA »</p>
+                    </a>
+                </nav>
+                <nav class="blog2">
+                    <a href="blog.html" target="_blank">
+                        <p>« VÅR BLOGG »</p>
+                    </a>
+                </nav>
+                <div class="footerSection3Bottom">
+                    <div class="companyName">
+                        <p>TEKNIKTAJM</p>
+                        <p>211 42 Malmö Org 556477-1337</p>
+                    </div>
+                    <nav class="customersSupport">
+                        <a href="customerService.html">
+                            <p>KUNDSERVICE:</p>
+                        </a>
+                        <a href="customerService.html#mail">Maila oss
+                            <img class="contactIcon" src="style/img/mailIcon2.png" />
+                        </a>
+                        <a href="customerService.html#phoneNumber">Ring oss
+                            <img class="contactIcon" src="style/img/phoneIcon4.png" />
+                        </a>
+                    </nav>
+                </div>
+            </section>
+        </div>
+    </footer>
+</body>
+
+</html>
