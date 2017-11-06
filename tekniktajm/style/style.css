@@ -2168,7 +2168,11 @@ input.chooseNr::-webkit-input-placeholder {
 
 .addedToCart th {
     font-size: 18px;
+    text-align: left;
+}
 
+.right {
+    text-align: right !important;
 }
 
 .addedToCart p {
@@ -2178,7 +2182,7 @@ input.chooseNr::-webkit-input-placeholder {
 
 .addedToCart td {
     font-size: 18px;
-    padding: 15px 50px 0 50px;
+    /*padding: 15px 50px 0 50px;*/
 }
 
 .addedToCart a {
