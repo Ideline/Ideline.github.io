@@ -2126,6 +2126,7 @@ input.chooseNr::-webkit-input-placeholder {
 
 .checkoutTable {
     border-collapse: collapse;
+    width: 100%;
 }
 
 .checkoutTable th {
