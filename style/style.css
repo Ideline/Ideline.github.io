@@ -429,6 +429,7 @@ input.searchBox1::-webkit-input-placeholder {
 
 .column2 div {
     display: flex;
+    justify-content: space-around;
 }
 
 .column2 a {
