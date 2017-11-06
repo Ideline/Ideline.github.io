@@ -1,0 +1,160 @@
+
+.body {
+    background-color: whitesmoke;
+    color: black;
+    font-size: 80%;
+    font-family: Arial;
+    line-height: 1.5;
+    text-align: left;
+    margin: 0 auto; /* Conteinern centreras */
+    width: 85%; /* Bredden på conteinern */
+    clear: both; /* Inga floating element kommer finnas till höger eller vänster om conteinern*/
+}
+
+.mainheader .h1 {
+    font-size: xx-large;
+    font-family: "Monotype Corsiva";
+    font-style: italic;
+    font-weight: lighter;
+    display: flex;
+    justify-content: center;
+    margin: 50px;
+
+}
+
+.mainheader a {
+    text-decoration: none;
+}
+
+.mainheader nav {
+    background-color: darkgrey;
+    height: 40px;
+    margin-bottom: 50px;
+    border-radius: 5px; /* runda kanter */
+    -moz-border-radius: 5px; /* för mozila */
+    -webkit-border-radius: 5px; /* för webläsare baserade på webkit */
+}
+
+.mainheader nav ul {
+    list-style: none; /* tar bort punkterna från listan */
+    margin: 0 auto;
+}
+
+.mainheader nav ul li {
+    float: left; /* namnen i listan radas upp*/
+
+}
+
+.mainheader nav a:link, .mainheader nav a:visited {
+    color: black; /* ändrar färg på text i länkarna*/
+    display: block;
+    padding: 10px 25px;
+    height: 20px;
+}
+
+.mainheader nav a:hover, .mainheader nav a:active,
+.mainheader nav .active a:link, .mainheader nav .active a:visited {
+    background-color: dimgray;
+    color: white;
+}
+
+.content {
+    width: 70%;
+    float: left;
+}
+
+.topcontent {
+    background-color: white;
+    padding: 5px;
+    margin-top: 5px;
+}
+
+.content img {
+    width: 100%; /* bredden av conteinern */
+    height: auto;
+    margin: 2% 0; /* 2% toppen/botten, 0 höger/vänster */
+}
+
+.sidebar {
+    width: 27%;
+    float: left;
+    background-color: white;
+    margin-top: 5px;
+    margin-left: 10px;
+    padding: 5px;
+}
+
+.sidebar nav ul {
+    list-style: none; /* tar bort punkterna från listan */
+    margin: 0;
+    padding: 0;
+    background-color: darkgrey;
+    width: 50%;
+}
+
+.sidebar a {
+    display: block;
+    color: black;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+
+.sidebar a:hover {
+    background-color: #555;
+    color: white;
+}
+
+.footer {
+    width: 100%;
+    float: left;
+    margin: 2px 0;
+    background-color: gray;
+}
+
+.footer p {
+    padding: 2px auto;
+}
+
+@media only screen and (min-width: 150px) and (max-width: 667px) {
+    .body {
+        width: 100%;
+        font-size: 100%
+    }
+
+    .mainheader nav {
+        height: 120px;
+    }
+
+    .mainheader nav ul {
+        padding-left: 0;
+    }
+
+    .mainheader nav ul li {
+        width: 100%;
+        text-align: center;
+
+    }
+
+    .mainheader nav a:link, .mainheader nav a:visited {
+        padding: 10px 25px;
+        height: 20px;
+        display: block;
+    }
+
+    .content {
+        width: 100%;
+        float: left;
+    }
+
+    .sidebar {
+        width: 97%;
+        float: left;
+        background-color: white;
+        margin-top: 5px;
+        margin-left: 10px;
+        padding: 5px;
+    }
+}
+
+
+
