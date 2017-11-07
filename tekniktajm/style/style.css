@@ -393,8 +393,7 @@ input.searchBox1::-webkit-input-placeholder {
     background-color: white;
 }
 
-.sortSection header {
-    text-align: right;
+.sortByTitel {
     padding-bottom: 20px;
     font-family: font1;
     font-size: 22px;
@@ -404,6 +403,7 @@ input.searchBox1::-webkit-input-placeholder {
 }
 
 .sortByContainer {
+    text-align: right;
     flex-direction: column;
     align-items: flex-end;
     padding-right: 2.3%;
@@ -1151,7 +1151,7 @@ body {
         padding-right: 2%;
     }
 
-    .sortByContainer header {
+    .sortByTitel {
         margin-right: 0;
     }
 
