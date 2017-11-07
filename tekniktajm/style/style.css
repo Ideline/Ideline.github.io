@@ -426,11 +426,17 @@ input.searchBox1::-webkit-input-placeholder {
 #headLine {
     flex-direction: column;
 }
-
+/*
 .column2 div {
     display: flex;
     justify-content: space-around;
+}*/
+
+.productContainer2 {
+    display: flex;
+    justify-content: space-around;
 }
+
 
 .column2 a {
     display: flex;
@@ -493,6 +499,7 @@ input.searchBox1::-webkit-input-placeholder {
 }
 
 .starsAlign {
+    height: 30px;
     position: relative;
     width: 84px;
     margin: 0 auto;
@@ -1077,9 +1084,10 @@ body {
         margin: 0;
     }
 
+    /*
     .column2 div {
         flex-wrap: wrap;
-    }
+    }*/
 
     .column2 a {
         width: 42%;
@@ -1090,6 +1098,7 @@ body {
 
     .productContainer2 {
         justify-content: center;
+        flex-wrap: wrap;
     }
 
     .spacer {
