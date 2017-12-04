@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Välkommen till Sveriges bästa elektronik-webhandel! Vi har de senaste modellerna från Samsung, Acer, Apple mm till låga priser och snabba leveranser!"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Orderbekräftelse</title>
+    <style>
+        .bBody {
+            box-sizing: border-box;
+        }
+
+        .marginRight20 {
+            margin-right: 20px;
+        }
+
+        .textAlignRight {
+            text-align: right;
+        }
+
+        .headerContainer {
+            width: 80%;
+            margin-left: 10%;
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .headerContainer1 {
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.74);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header1 {
+            display: flex;
+            justify-content: space-around;
+            width: 80%;
+            margin-left: 10%;
+            background-color: rgba(255, 255, 255, 0.781);
+            position: fixed;
+            z-index: 100;
+        }
+
+        .menuIcon {
+            width: 15px;
+            height: auto;
+        }
+
+        body {
+            margin: 0px;
+        }
+
+        .searchBox {
+            left: 1.8%;
+        }
+
+        .mainCheckout {
+            width: 80%;
+            margin-left: 10%;
+        }
+
+        #ordConf_Header h2 {
+            font-size: 35px;
+            text-align: center;
+            letter-spacing: 1px;
+        }
+
+        #ordConf_Header h2 {
+            font-size: 35px;
+            text-align: center;
+            letter-spacing: 1px;
+        }
+
+        .row {
+            display: flex;
+            flex-direction: row;
+        }
+
+        #orderConf_orderId {
+            font-weight: 600;
+        }
+
+        #orderConf_orderDate,
+        #orderConf_deliveryMethod,
+        #orderConf_paymentMethod,
+        #orderConf_cardNumber {
+            color: gray;
+        }
+
+        #orderConf_section1 {
+            margin: 20px 0 20px 0;
+        }
+
+        #orderConf_zipCode,
+        #orderConf_streetName,
+        #orderConf_firstName,
+        #orderConf_totalCost,
+        #orderConf_shippingFee {
+            margin-right: 8px;
+        }
+
+        .alignRight {
+            text-align: right !important;
+        }
+
+        #orderConf_PrName {
+            text-align: left;
+        }
+
+        .checkoutPrImg {
+            width: 150px !important;
+            height: auto !important;
+            margin-right: 20px;
+        }
+
+        .addedToCart {
+            margin-top: 80px;
+            font-family: sans-serif;
+        }
+
+        .addedToCart h2 {
+            margin-bottom: 80px;
+            margin-top: 60px;
+            font-size: 25px;
+            text-align: center;
+        }
+
+        .addedToCart th {
+            font-size: 18px;
+            text-align: left;
+        }
+
+        .addedToCart td {
+            font-size: 18px;
+        }
+
+        .addedToCart p {
+            color: rgb(197, 197, 197);
+            font-size: 15px;
+        }
+
+        .checkoutTable {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        .checkoutTable th {
+            padding-bottom: 20px;
+        }
+
+        .alignRight {
+            text-align: right !important;
+        }
+
+        .tableRow {
+            border-top: 1px solid rgb(187, 187, 187);
+            border-bottom: 1px solid rgb(187, 187, 187);
+            height: 180px;
+        }
+
+        .checkoutProduct {
+            display: none;
+        }
+
+        .total1 {
+            width: 30%;
+            margin-left: 69%;
+            /*display: flex;
+            flex-direction: column;*/
+            align-items: flex-end;
+            margin-top: 40px;
+            margin-bottom: 150px;
+        }
+
+        .numberProducts {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .shippingFee {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+
+        .totalPrice {
+            width: 100%;
+            height: 30px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+
+        .total1 p {
+            color: black;
+            font-size: 16px;
+            margin-top: 0;
+        }
+
+        .totalPrice b {
+            font-size: 22px;
+        }
+
+        .totalPrice p {
+            font-size: 26px;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .justifyStart {
+            display: flex;
+            flex-direction: row;
+        }
+
+        #orderConf_costSummary {
+            font-size: 16px;
+            width: 100%;
+            margin-bottom: 100px;
+        }
+
+        #orderConf_numberProducts {
+            text-align: right;
+        }
+
+        #orderConf_shippingFee {
+            text-align: right;
+        }
+
+        #orderConf_totalCost {
+            text-align: right;
+            font-size: 25px;
+            font-weight: 600;
+        }
+
+        .bold25 {
+            font-size: 25px;
+            font-weight: 600;
+        }
+
+        #orderConf_incVat {
+            text-align: right;
+        }
+
+        @media screen and (max-width: 1400px) {
+            .checkoutProduct {
+                visibility: visible;
+                display: flex;
+            }
+            .checkoutTable {
+                display: none;
+            }
+            .checkoutProduct {
+                justify-content: space-between;
+                align-items: center;
+                border-top: 1px solid rgb(187, 187, 187);
+                border-bottom: 1px solid rgb(187, 187, 187);
+            }
+            .addedToCart p {
+                color: black !important;
+            }
+            .ref {
+                font-size: 10px !important;
+            }
+        }
+
+        @media screen and (max-width: 850px) {
+
+            #orderConf_section2 {
+                margin: 0 5% 20px 5% !important;
+            }
+            #orderConf_section1 {
+                margin: 0 5% 20px 5% !important;
+            }
+            #orderConf_autoResponse {
+                margin: 0 5% 20px 5% !important;
+            }
+            .total1 {
+                width: 90% !important;
+                margin: 5% 5% 20% 5% !important;
+            }
+            .checkoutProduct {
+                margin: 0 5% 0 5%;
+            }
+            .mainCheckout {
+                width: 100% !important;
+                margin: 0 !important;
+            }
+        }
+
+        @media screen and (max-width: 550px) {
+            #orderConf_PrName {
+                text-align: center;
+            }
+            .checkoutProduct {
+                flex-direction: column;
+            }
+            .checkoutProduct div {
+                display: flex;
+                align-items: center;
+                flex-direction: column;
+                padding: 5px 0 5px 0;
+                margin-top: 30px;
+            }
+            .checkoutProduct p {
+                margin: 3px 0 3px 0;
+            }
+            .ref {
+                font-size: 12px !important;
+            }
+            .price {
+                font-size: 20px !important;
+                font-weight: 600;
+            }
+        }
+    </style>
+</head>
+
+<body class="whiteBackground bBody">
+
+    <main class="mainCheckout bMain">
+
+        <header id="ordConf_Header">
+            <h2>Orderbekräftelse</h2>
+        </header>
+        <div id="orderConf_autoResponse"></div>
+
+        <section id="orderConf_section1">
+            <div id="orderConf_orderId">[ORDERID]</div>
+            <div id="orderConf_orderDate">[ORDERDATE]</div>
+            <div id="orderConf_deliveryMethod">[DELIVERYMETHOD]</div>
+            <div id="orderConf_paymentMethod">[PAYMENTMETHOD]</div>
+            <div id="orderConf_cardNumber">[CARDNUMBER]</div>
+        </section>
+        <section id="orderConf_section2">
+            <h3>FAKTURAADRESS</h3>
+            <div class="row">
+                <div id="orderConf_firstName">[FIRSTNAME]</div>
+                <div id="orderConf_lastName">[LASTNAME]</div>
+            </div>
+            <div class="row">
+                <div id="orderConf_streetName">[STREETNAME]</div>
+                <div id="orderConf_streetNumber">[STREETNUMBER]</div>
+            </div>
+            <div class="row">
+                <div id="orderConf_zipCode">[ZIPCODE]</div>
+                <div id="orderConf_city">[CITY]</div>
+            </div>
+            <div id="orderConf_phoneNumber">[PHONENUMBER]</div>
+            <div id="orderConf_email">[EMAIL]</div>
+            <div id="orderConf_otherInfo">[OTHER]</div>
+        </section>
+        <section id="orderConf_section3" class="addedToCart">
+            <h2>KÖP</h2>
+
+            <table id="orderConf_checkoutTable" class="checkoutTable">
+                <thead>
+                    <th>PRODUKT</th>
+                    <th>BESKRIVNING</th>
+                    <th>ANTAL</th>
+                    <th class="alignRight">BELOPP</th>
+                </thead>
+                <tbody id="orderConf_table">
+                    [PRODUCTS]
+                </tbody>
+            </table>
+            <div id="orderConf_checkoutProduct">
+
+            </div>
+
+        </section>
+        
+        <section>
+            <table id="orderConf_costSummary">
+                <tr>
+                    <td>Totalt antal produkter:</td>
+                    <td id="orderConf_numberProducts">[NUMBERPRODUCTS]</td>
+                </tr>
+                <tr>
+                    <td>Fraktavgift:</td>
+                    <td id="orderConf_shippingFee">[SHIPPINGFEE]</td>
+                </tr>
+                <tr>
+                    <td class="bold25">Totalbelopp:</td>
+                    <td id="orderConf_totalCost">[TOTALCOST]</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td id="orderConf_incVat">*Inklusive moms</td>
+                </tr>
+            </table>
+        </section>
+    </main>
+
+
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="code.js"></script>
+</body>
+
+</html>

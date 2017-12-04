@@ -52,7 +52,6 @@
                 <thead>
                     <th>PRODUKT</th>
                     <th>BESKRIVNING</th>
-                    <th>FÄRG</th>
                     <th>ANTAL</th>
                     <th>BELOPP</th>
                     <th class="right">TA BORT</th>
@@ -65,7 +64,6 @@
                         <td>Sony 65" 4K UHD Smart TV
                             <p class="ref">KD65XE9305BAE</p>
                         </td>
-                        <td> - </td>
                         <td>
                             <input class="chooseNr" placeholder="1" type="number" min="1" max="10" />
                         </td>
@@ -83,7 +81,6 @@
                         <td>iPhone X smartphone 256GB
                             <p class="ref">APPIPX256SI</p>
                         </td>
-                        <td>(silver)</td>
                         <td>
                             <input class="chooseNr" placeholder="1" type="number" min="1" max="10" />
                         </td>
@@ -98,14 +95,16 @@
             </table>
 
             <div class="checkoutProduct">
-                <div>
-                    <img class="checkoutPrImg" src="style/img/computer4.jpg" />
-                </div>
-                <div>
-                    <p class="name">MacBook Air 13.3" MQ32</p>
-                    <p class="ref">MACAMQD32KSA</p>
-                    <p> - </p>
-                    <input class="chooseNr" placeholder="1" type="number" min="1" max="10" />
+                <div class="justifyStart">
+                    <div>
+                        <img class="checkoutPrImg" src="style/img/computer4.jpg" />
+                    </div>
+                    <div>
+                        <p class="name">MacBook Air 13.3" MQ32</p>
+                        <p class="ref">MACAMQD32KSA</p>
+                        <p> - </p>
+                        <input class="chooseNr" placeholder="1" type="number" min="1" max="10" />
+                    </div>
                 </div>
                 <div>
                     <a href="">
@@ -116,14 +115,16 @@
             </div>
 
             <div class="checkoutProduct">
-                <div>
-                    <img class="checkoutPrImg" src="style/img/mobile6.jpg" />
-                </div>
-                <div>
-                    <p class="name">iPhone X smartphone 256GB</p>
-                    <p class="ref">APPIPX256SI</p>
-                    <p> (silver) </p>
-                    <input class="chooseNr" placeholder="1" type="number" min="1" max="10" />
+                <div class="justifyStart">
+                    <div>
+                        <img class="checkoutPrImg" src="style/img/mobile6.jpg" />
+                    </div>
+                    <div>
+                        <p class="name">iPhone X smartphone 256GB</p>
+                        <p class="ref">APPIPX256SI</p>
+                        <p> (silver) </p>
+                        <input class="chooseNr" placeholder="1" type="number" min="1" max="10" />
+                    </div>
                 </div>
                 <div>
                     <a href="">
@@ -228,7 +229,7 @@
                 />
                 <input class="checkoutInput" type="text" required minlength="3" maxlength="30" pattern="[a-zA-Z -åäö]*" placeholder="Gatuadress*"
                 />
-                <input class="checkoutInput" type="text" required minlength="1" maxlength="6" pattern="[[0-9]+ [a-zA-Z -]*]" placeholder="Husnummer*"
+                <input class="checkoutInput" type="text" required minlength="1" maxlength="6" pattern="[[0-9]+ [a-zA-Z -]*]" placeholder="Gatunummer*"
                 />
                 <input class="checkoutInput" type="text" required minlength="5" maxlength="5" pattern="[0-9]*" placeholder="Postnummer*"
                 />

@@ -7,7 +7,7 @@
     />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="style/style.css">
-    <title>Betalning</title>
+    <title>Orderbekräftelse</title>
 </head>
 
 <body class="whiteBackground bBody">
@@ -45,127 +45,99 @@
 
     <main class="mainCheckout bMain">
 
-        <section class="paymentMethod">
-            <div class="paymentMethodImgContainer">
-                <h1>VÄLJ BETALNINGSSÄTT</h1>
-                <div class="paymentContainer">
-                    <div>
-                        <a id="visa" href="#creditCardForm">
-                            <img src="style/img/visaIcon1b.png" />
-                        </a>
-                        <a id="masterCard" href="#creditCardForm">
-                            <img src="style/img/mastercardIcon1b.png" />
-                        </a>
-                    </div>
-                    <div>
-                        <a id="Amex" href="#creditCardForm">
-                            <img src="style/img/americanExpressIcon1b.png" />
-                        </a>
-                        <a id="cirrus" href="#creditCardForm">
-                            <img src="style/img/cirrusIcon1b.png" />
-                        </a>
-                    </div>
-                    <div>
-                        <a id="payPal" href="#payPalPostePay">
-                            <img src="style/img/paypalIcon1b.png" />
-                        </a>
-                        <a id="postePay" href="#payPalPostePay">
-                            <img src="style/img/postepayIcon1b.png" />
-                        </a>
-                    </div>
-                </div>
+        <header id="ordConf_Header">
+            <h2>Orderbekräftelse</h2>
+        </header>
+        <div id="orderConf_autoResponse"></div>
+
+        <section id="orderConf_section1">
+            <div id="orderConf_orderId"></div>
+            <div id="orderConf_orderDate"></div>
+            <div id="orderConf_deliveryMethod"></div>
+            <div id="orderConf_paymentMethod"></div>
+            <div id="orderConf_cardNumber"></div>
+        </section>
+        <section id="orderConf_section2">
+            <h3>FAKTURAADRESS</h3>
+            <div class="row">
+                <div id="orderConf_firstName"></div>
+                <div id="orderConf_lastName"></div>
             </div>
-            <div class="fees">
-                <div class="numberProducts">
+            <div class="row">
+                <div id="orderConf_streetName"></div>
+                <div id="orderConf_streetNumber"></div>
+            </div>
+            <div class="row">
+                <div id="orderConf_zipCode"></div>
+                <div id="orderConf_city"></div>
+            </div>
+            <div id="orderConf_phoneNumber"></div>
+            <div id="orderConf_email"></div>
+            <div id="orderConf_otherInfo"></div>
+        </section>
+        <section id="orderConf_section3" class="addedToCart">
+            <h2>KÖP</h2>
+
+            <table id="orderConf_checkoutTable" class="checkoutTable">
+                <thead>
+                    <th>PRODUKT</th>
+                    <th>BESKRIVNING</th>
+                    <th>ANTAL</th>
+                    <th class="alignRight">BELOPP</th>
+                </thead>
+                <tbody id="orderConf_table">
+
+                </tbody>
+            </table>
+            <div id="orderConf_checkoutProduct">
+
+            </div>
+
+        </section>
+        <!--
+        <section id="orderConf_section4">
+            <div class="total1">
+                <div class="numberProducts" class="row">
                     <p>Totalt antal produkter:</p>
-                    <p>2</p>
+                    <p id="orderConf_numberProducts"></p>
                 </div>
                 <div class="shippingFee">
-                    <p>Express leverans</p>
-                    <p>99,00 SEK</p>
+                    <p>Fraktavgift:</p>
+                    <div id="orderConf_shippingDiv" class="row">
+                        <p id="orderConf_shippingFee"></p>
+                        <p>SEK</p>
+                    </div>
                 </div>
-                <div class="totalPrice2">
+                <div class="totalPrice">
                     <b>Totalbelopp:</b>
-                    <div>
-                        <p>36 279 SEK</p>
+                    <div id="orderConf_totalDiv" class="row">
+                        <p id="orderConf_totalCost"></p>
+                        <p>SEK</p>
                     </div>
                 </div>
                 <p>*Inklusive moms</p>
-        </section>
-
-        <section id="creditCardForm" class="hide">
-            <div class="heading">
-                <h1>Bekräfta Betalning</h1>
             </div>
-            <div class="payment">
-                <form id="form2" action="order_confirmation.html">
-                    <div class="form-group owner">
-                        <label for="owner">Kortinnehavare</label>
-                        <input type="text" class="form-control" pattern="[a-z A-Z -]*" required id="owner">
-                    </div>
-                    <div class="form-group CVV">
-                        <label for="cvv">CVV</label>
-                        <input type="text" class="form-control" pattern="[0-9]{3,3}" required id="cvv">
-                    </div>
-                    <div class="form-group" id="card-number-field">
-                        <label for="cardNumber">Kortnummer</label>
-                        <input type="text" class="form-control" placeholder="1234 1234 1234 1234" maxlength="19" required id="cardNumber">
-                    </div>
-                    <div class="orderCreditInfo">
-                        <div class="form-group" required id="expiration-date">
-                            <label>Utgångsdatum</label>
-                            <div class="validToDate">
-                                <select>
-                                    <option value="01">Januari</option>
-                                    <option value="02">Februari </option>
-                                    <option value="03">Mars</option>
-                                    <option value="04">April</option>
-                                    <option value="05">Maj</option>
-                                    <option value="06">Juni</option>
-                                    <option value="07">Juli</option>
-                                    <option value="08">Augusti</option>
-                                    <option value="09">September</option>
-                                    <option value="10">Oktober</option>
-                                    <option value="11">November</option>
-                                    <option value="12">December</option>
-                                </select>
-                                <select>
-                                    <option value="17"> 2017</option>
-                                    <option value="18"> 2018</option>
-                                    <option value="19"> 2019</option>
-                                    <option value="20"> 2020</option>
-                                    <option value="21"> 2021</option>
-                                    <option value="22"> 2022</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group" id="credit_cards">
-                            <div>
-                                <img src="style/img/visa.jpg" id="visa">
-                                <img src="style/img/mastercard.jpg" id="mastercard">
-                                <img src="style/img/amex.jpg" id="amex">
-                                <img src="style/img/cirrus.png" id="cirrus">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group" id="pay-now">
-                        <button type="submit" class="btn btn-default" id="confirm-purchase">SLUTFÖR KÖP »</button>
-                    </div>
-                </form>
-            </div>
+        </section>-->
+        <section>
+            <table id="orderConf_costSummary">
+                <tr>
+                    <td>Totalt antal produkter:</td>
+                    <td id="orderConf_numberProducts"></td>
+                </tr>
+                <tr>
+                    <td>Fraktavgift:</td>
+                    <td id="orderConf_shippingFee"></td>
+                </tr>
+                <tr>
+                    <td class="bold25">Totalbelopp:</td>
+                    <td id="orderConf_totalCost"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td id="orderConf_incVat">*Inklusive moms</td>
+                </tr>
+            </table>
         </section>
-
-        <section class="placementPayPoste hide">
-            <div id="payPalPostePay">
-                <div>
-                    <p>Om du väljer PayPal eller PostePay som betalningssätt så behöver du inte ange någon ytterligare information.</p>
-                    <p>När du trycker på knappen SLUTFÖR KÖP kommer du automatiskt att skickas vidare till PayPal:s eller PostePays
-                        webbplats där du kan slutföra betalningen.</p>
-                </div>
-                <input type="submit" class="approvePayment" id="payPalSubmit" value="SLUTFÖR KÖP   »" />
-            </div>
-        </section>
-
     </main>
 
     <footer>
