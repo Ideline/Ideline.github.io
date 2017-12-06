@@ -422,6 +422,9 @@ input.searchBox1::-webkit-input-placeholder {
     width: 100%;
 }
 
+#payPalPostePay{
+    margin: 100px auto;
+}
 
 #headLine {
     flex-direction: column;
@@ -538,6 +541,10 @@ input.searchBox1::-webkit-input-placeholder {
 }
 
 /* ----------------------- ANTAL GULA STJÄRNOR PÅ STORA PRODUKTBILDER ----------------------- */
+.starsN_big {
+    width: 0px !important;
+}
+
 .stars3_big {
     width: 50px !important;
 }
@@ -962,6 +969,10 @@ body {
     }
 
     .checkoutTable {
+        display: none;
+    }
+
+    .searchResultTable{
         display: none;
     }
 
@@ -2157,11 +2168,24 @@ input.chooseNr::-webkit-input-placeholder {
     width: 100%;
 }
 
+.searchResultTable{
+    border-collapse: collapse;
+    width: 100%;
+}
+
 .checkoutTable th {
     padding-bottom: 20px;
 }
 
+.searchResultTable th{
+    padding-bottom: 20px;
+}
+
 .checkoutTable img {
+    width: 20px;
+}
+
+.searchResultTable img {
     width: 20px;
 }
 
@@ -2176,6 +2200,11 @@ input.chooseNr::-webkit-input-placeholder {
     width: 30px;
     padding-top: 5px;
     padding-left: 5px;
+    margin-bottom: 50px;
+}
+
+#trash{
+    cursor: pointer;
 }
 
 input.chooseNr::-webkit-input-placeholder {
@@ -2815,4 +2844,92 @@ b.Main {
 
 .hide{
     display: none;
+}
+
+#searchResults th{
+    text-align: left;
+}
+
+.bold18{
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.searchResultTableRow {
+    border-top: 1px solid rgb(187, 187, 187);
+    border-bottom: 1px solid rgb(187, 187, 187);
+    height: 180px;
+}
+
+#noMatchMessage{
+    margin: 5% 0 5% 0;
+}
+
+.mainSearch {
+    width: 80%;
+    margin-left: 10%;   
+}
+
+.sansSerif18{
+    font-family: sans-serif;
+    font-size: 18px;
+}
+
+.sansSerif15{
+    font-family: sans-serif;
+    font-size: 15px;
+    color: rgb(165, 165, 165);
+}
+
+#searchSuggestions{
+    border: 1px solid black;
+    width: 80%;
+    margin-left: 10%;
+}
+
+.hitRow:hover {
+    background-color: rgb(223, 223, 223);
+}
+
+.hitRow{
+    cursor: pointer;
+}
+
+/*_________________________________________________________________________________*/
+
+#myInput {
+    background-image: url('/css/searchicon.png');
+    background-position: 10px 12px;
+    background-repeat: no-repeat;
+    width: 100%;
+    font-size: 16px;
+    padding: 12px 20px 12px 40px;
+    border: 1px solid #ddd;
+    margin-bottom: 12px;
+}
+  
+#myUL {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+  
+#myUL li a {
+    border: 1px solid #ddd;
+    margin-top: -1px; /* Prevent double borders */
+    background-color: #f6f6f6;
+    padding: 12px;
+    text-decoration: none;
+    font-size: 18px;
+    color: black;
+    display: block
+}
+  
+#myUL li a:hover:not(.header) {
+    background-color: #eee;
+}
+
+.font18{
+    font-size: 18px !important;
+    color: black !important;
 }

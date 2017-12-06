@@ -53,44 +53,11 @@
                     <th>PRODUKT</th>
                     <th>BESKRIVNING</th>
                     <th>ANTAL</th>
-                    <th>BELOPP</th>
+                    <th class="right">PRIS</th>
                     <th class="right">TA BORT</th>
                 </thead>
                 <tbody>
-                    <tr class="tableRow">
-                        <td>
-                            <img class="checkoutPrImg" src="style/img/tv6.jpg" />
-                        </td>
-                        <td>Sony 65" 4K UHD Smart TV
-                            <p class="ref">KD65XE9305BAE</p>
-                        </td>
-                        <td>
-                            <input class="chooseNr" placeholder="1" type="number" min="1" max="10" />
-                        </td>
-                        <td>22 990 SEK</td>
-                        <td class="right">
-                            <a href="">
-                                <img src="style/img/delete2.png" />
-                            </a>
-                        </td>
-                    </tr>
-                    <tr class="tableRow">
-                        <td>
-                            <img class="checkoutPrImg" src="style/img/mobile6.jpg" />
-                        </td>
-                        <td>iPhone X smartphone 256GB
-                            <p class="ref">APPIPX256SI</p>
-                        </td>
-                        <td>
-                            <input class="chooseNr" placeholder="1" type="number" min="1" max="10" />
-                        </td>
-                        <td>13 190 SEK</td>
-                        <td class="right">
-                            <a href="">
-                                <img src="style/img/delete2.png" />
-                            </a>
-                        </td>
-                    </tr>
+                    <!-- Här stoppar funktionen createCheckoutElements() in de produkterna som är tillagda i kundvagnen -->
                 </tbody>
             </table>
 
@@ -138,16 +105,16 @@
         <div class="total1">
             <div class="numberProducts">
                 <p>Totalt antal produkter:</p>
-                <p>2</p>
+                <p id="totalNumberProducts"></p>
             </div>
             <div class="shippingFee">
                 <p>Uppskattad fraktavgift:</p>
-                <p>0,00 SEK</p>
+                <p></p>
             </div>
             <div class="totalPrice">
                 <b>Totalbelopp:</b>
                 <div>
-                    <p>36 180 SEK</p>
+                    <p></p>
                 </div>
             </div>
             <p>*Inklusive moms</p>
@@ -350,5 +317,7 @@
         </div>
     </footer>
 </body>
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="code.js"></script>
 
 </html>

@@ -7,41 +7,30 @@
     />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="style/style.css">
-    <title>HP Envy 27-b110no 34" stationär dator (grå)</title>
+    <title>Sökresultat</title>
 </head>
 
-<body>
-
-    <div id="container">
-        <div id="exampleModal" class="reveal-modal">
-            <a href="#" class="close-reveal-modal">
-                <img src="style/img/closeButton.png" />
-            </a>
-            <p>
-                <img src="style/img/compStation1.jpg" />
-            </p>
-        </div>
-    </div>
+<body class="whiteBackground">
     <header id="headerContainer">
-        <div class="headerContainer">
-            <nav class="header">
-                <a href="index.html">
+        <div class="headerContainer1">
+            <nav class="header1">
+                <a class="here" href="index.html">
                     <img class="menuIcon" src="style/img/homeIcon9.png" />
                 </a>
                 <a href="soundVideo.html">LJUD & BILD</a>
                 <a href="mobilePhones.html">MOBIL, TELE & GPS</a>
-                <a class="here" href="computers.html">DATORER & TILLBEHÖR</a>
+                <a href="computers.html">DATORER & TILLBEHÖR</a>
                 <a href="photoVideo.html">FOTO & VIDEO</a>
                 <a href="gaming.html">GAMING</a>
                 <a href="checkout.html">
                     <img class="menuIcon" src="style/img/cartIcon1.png" />
                 </a>
             </nav>
-            <form id="searchBox">
-                <input class="searchBox" type="text" placeholder="&#8981 SÖK" />
-            </form>
+            <!--<form id="searchBox">-->
+            <input class="searchBox1" type="text" placeholder="&#8981 SÖK" />
+            <!--</form>-->
             <nav class="menuSmallScreen">
-                <a href="index.html">
+                <a class="here2" href="index.html">
                     <img src="style/img/homeIcon8.png" />
                 </a>
                 <a href="menuSmallScreen.html">
@@ -54,46 +43,8 @@
         </div>
     </header>
 
-    <main>
-
-        <section class="product">
-            <div class="productContainer">
-                <div class="productInfo">
-                    <p class="productName">HP Envy 27-b110no 34" stationär dator (grå)</p>
-                    <p class="part">Artikelnummer: HP34B010NO</p>
-                    <div class="stars">
-                        <div class="wrapStars2">
-                            <p class="starsYellow2 stars5_big">★★★★★</p>
-                            <p class="starsGrey2">★★★★★</p>
-                        </div>
-                        <p class="review">5.0 (1)</p>
-                    </div>
-                    <p class="priceTag">24 990</p>
-                    <div class="addToCart">
-                        <button class="buyButton" type="button">
-                            <span>Lägg till i varukorg </span>
-                        </button>
-                    </div>
-                    <div class="descriptions">
-                        <p>Ett modernt utseende möter solid prestanda. Så beskrivs HP Envy 34-b110no all-in-one, en stationär
-                            dator med en rad spännande egenskaper. Datorn har en välvd 34" WQHD IPS skärm, Nvidia-grafik,
-                            B&O Play högtalare och Intel Core i7 processor.</p>
-                        <ul>
-                            <li>Intel Core i7-7700T CPU</li>
-                            <li>Curved 34" WQHD screen</li>
-                            <li>Nvidia GTX 950M, B&O sound</li>
-                        </ul>
-                    </div>
-                    <a id="specifications" href="http://store.hp.com/SwedenStore/Merch/Product.aspx?id=Z7C67EA&opt=UUW&sel=DTP" target="_blank">«Specifikationer»</a>
-                </div>
-                <div class="imageContainer2">
-                    <img class="mainIMG" src="style/img/compStation1.jpg" alt="bild på dator" />
-                    <a class="showLargeImage" href="#container">Visa större storlek</a>
-                </div>
-            </div>
-        </section>
-
-        <div class="spacer"></div>
+    <main class="mainCheckout">
+        <h3 id="noMatchMessage">Din sökning gav inget resultat obs! testa på skärm med annan upplösning och storlek</h3>
 
     </main>
 
@@ -205,6 +156,8 @@
         </div>
     </footer>
     <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="productsCode.js"></script>
+    <!--<script src="searchCode.js"></script>-->
     <script src="code.js"></script>
 </body>
 

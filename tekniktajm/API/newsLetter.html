@@ -67,20 +67,27 @@
             margin: 0 3% 0 3%;
         }
 
-        #newsLetterMain p {
+        p {
             margin: 0;
             font-size: 20px;
+            color: black;
         }
 
-        #newsLetterMain a {
+        .newsLetterProLinks {
             text-decoration: none;
-            font-size: 20px;
+            font-size: 18px;
             font-weight: 600;
             color: black;
         }
 
+        #linkToWebsiteDiv{
+            text-align: center;
+            width: 100%;
+        }
+
         #linkToWebsite {
-            font-size: 30px !important;
+            font-size: 22px !important;
+            text-align: center;
         }
 
         #newsLetterMain nav {
@@ -126,7 +133,7 @@
         }
 
         #welcomeText {
-            padding: 40px 0 40px 0;
+            padding: 0px 0 40px 0;
         }
 
         .fontSize20 {
@@ -185,6 +192,15 @@
 
         .newsletterSocialLinks {
             text-decoration: none;
+        }
+
+        .newsletterSocialLinksP{
+            color: white;
+            font-size: 15px;
+        }
+
+        .newsLetterBloglink{
+            font-size: 20px;
             color: white;
         }
 
@@ -206,6 +222,12 @@
             height: 15px;
             padding-left: 10px;
         }
+
+        h2{
+            margin: 50px 0 50px 0;
+            color: black;
+            font-size: 28px;
+        }
     </style>
 </head>
 
@@ -220,8 +242,7 @@
 
         <img id="newsLetterMainImg" src="style/img/newsLetterMainImg2.jpg" />
         <div id="welcomeText">
-            <p>Välkommen som prenumerant av vårt nyhetsbrev!</p>
-            <br/>
+            <h2>Välkommen som prenumerant av vårt nyhetsbrev!</h2>
             <p>När du följer oss så kommer du få de senaste nyheterna och en massa härliga erbjudanden direkt i din inkorg.
                 Vi informerar om tävlingar och allt möjligt smått och gott.</p>
             <p>Du kan när som helst sluta följa oss genom att klicka här.
@@ -237,37 +258,36 @@
         <table id="newsLetterTable1">
             <tr>
                 <td>
-                    <a href="computer1.html" target="_blank">
+                    <a href="https://ideline.github.io/tekniktajm/computer1.html" target="_blank">
                         <img src="https://ideline.github.io/tekniktajm/style/img/computer1.jpg" />
                     </a>
                 </td>
                 <td>
-                    <a href="computer2.html" target="_blank">
+                    <a href="https://ideline.github.io/tekniktajm/computer2.html" target="_blank">
                         <img src="https://ideline.github.io/tekniktajm/style/img/computer2.jpg" />
                     </a>
                 </td>
                 <td>
-                    <a href="computer3.html" target="_blank">
+                    <a href="https://ideline.github.io/tekniktajm/computer3.html" target="_blank">
                         <img src="https://ideline.github.io/tekniktajm/style/img/computer3.jpg" />
                     </a>
                 </td>
             </tr>
             <tr>
                 <td class="newsLetterProductName">
-                    <a href="computer1.html" target="_blank">HP 14-bp093no 14" bärbar dator</a>
+                    <a class="newsLetterProLinks" href="https://ideline.github.io/tekniktajm/computer1.html" target="_blank">HP 14-bp093no 14" bärbar dator</a>
                 </td>
                 <td class="newsLetterProductName">
-                    <a href="computer2.html" target="_blank">Lenovo Yoga 520 2-i-1 14"</a>
+                    <a class="newsLetterProLinks" href="https://ideline.github.io/tekniktajm/computer2.html" target="_blank">Lenovo Yoga 520 2-i-1 14"</a>
                 </td>
                 <td class="newsLetterProductName">
-                    <a href="computer3.html" target="_blank">Acer Swift 5 14" bärbar dator Signature Edition</a>
+                    <a class="newsLetterProLinks" href="https://ideline.github.io/tekniktajm/computer3.html" target="_blank">Acer Swift 5 14" bärbar dator Signature Edition</a>
                 </td>
             </tr>
         </table>
-        <nav>
-            <!-- Byt ut hrefen till publicerade sidans adress -->
-            <a id="linkToWebsite" href="index.html" target="_blank">« Kolla in fler av våra produkter! »</a>
-        </nav>
+        <div id="linkToWebsiteDiv">
+            <a class="newsLetterProLinks" id="linkToWebsite" href="https://ideline.github.io/tekniktajm/index.html" target="_blank">« Kolla in fler av våra produkter! »</a>
+        </div>
     </main>
     <footer id="newsLetterFooter">
         <div id="newsLetterFooterPart1">
@@ -276,7 +296,7 @@
                 <tr>
                     <td>
                         <a class="newsletterSocialLinks" href="https://www.instagram.com/instagram/" target="_blank">
-                            <p>INSTAGRAM</p>
+                            <p class="newsletterSocialLinksP">INSTAGRAM</p>
                         </a>
                     </td>
                     <td class="width20">
@@ -286,7 +306,7 @@
                 <tr>
                     <td>
                         <a class="newsletterSocialLinks" href="https://www.facebook.com/" target="_blank">
-                            <p>FACEBOOK</p>
+                            <p class="newsletterSocialLinksP">FACEBOOK</p>
                         </a>
                     </td>
                     <td class="width20">
@@ -296,7 +316,7 @@
                 <tr>
                     <td>
                         <a class="newsletterSocialLinks" href="https://www.youtube.com/" target="_blank">
-                            <p>YOUTUBE</p>
+                            <p class="newsletterSocialLinksP">YOUTUBE</p>
                         </a>
                     </td>
                     <td class="width20">
@@ -306,7 +326,7 @@
                 <tr>
                     <td>
                         <a class="newsletterSocialLinks" href="https://www.pinterest.se/" target="_blank">
-                            <p>PINTEREST</p>
+                            <p class="newsletterSocialLinksP">PINTEREST</p>
                         </a>
                     </td>
                     <td class="width20">
@@ -316,15 +336,15 @@
             </table>
         </div>
         <div id="newsLetterFooterPart2" class="newsLetterBorderTop">
-            <img id="newsLetterFooterImg" src="https://ideline.github.io/tekniktajm/style/img/newsLetterFooterImg.png" alt="Bild saknas" />
+            <img id="newsLetterFooterImg" src="https://github.com/Ideline/Ideline.github.io/blob/master/tekniktajm/style/img/newsLetterFooterImg.png?raw=true" alt="Bild saknas" />
         </div>
         <div id="newsLetterFooterPart3">
             <table>
                 <tr>
                     <td></td>
                     <td class="tdCenter">
-                        <a class="fontSize20" href="blog.html" target="_blank">
-                            <p>« FÖLJ OSS PÅ VÅR BLOGG FÖR DE SENASTE NYHETERNA »</p>
+                        <a class="fontSize20" href="https://ideline.github.io/tekniktajm/blog.html" target="_blank">
+                            <p class="newsLetterBloglink">« FÖLJ OSS PÅ VÅR BLOGG FÖR DE SENASTE NYHETERNA »</p>
                         </a>
                     </td>
                     <td></td>
@@ -333,10 +353,10 @@
                     <td class="tdLeft">TEKNIKTAJM 211 42 Malmö Org 556477-1337</td>
                     <td></td>
                     <td class="tdRight">KUNDSERVICE:
-                        <a href="customerService.html#mail" target="_blank">Maila oss
+                        <a href="https://ideline.github.io/tekniktajm/customerService.html" target="_blank">Maila oss
                             <img class="contactIcon" src="https://ideline.github.io/tekniktajm/style/img/mailIcon2.png" />
                         </a>
-                        <a href="customerService.html#phoneNumber" target="_blank">Ring oss
+                        <a href="https://ideline.github.io/tekniktajm/customerService.html" target="_blank">Ring oss
                             <img class="contactIcon" src="https://ideline.github.io/tekniktajm/style/img/phoneIcon4.png" />
                         </a>
                     </td>
