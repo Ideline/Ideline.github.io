@@ -2220,7 +2220,7 @@ input.chooseNr::-webkit-input-placeholder {
     margin-bottom: 50px;
 }
 
-#trash{
+.trash{
     cursor: pointer;
 }
 
