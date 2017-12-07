@@ -1,5 +1,5 @@
 function goTo(url) {
-    debugger;
+    //debugger;
     window.location.href = url;
 }
 
@@ -12,6 +12,7 @@ function goTo(url) {
 
         var order = loadOrder();
         sendOrder();
+        setPaymentSummary();
         //test();
 
         // ========================================================================================================================================================
@@ -55,7 +56,7 @@ function goTo(url) {
                     },
                     orderId: null,
                     orderDate: null,
-                    deliveryMethod: null,
+                    deliveryMethod: 'Standard Hem Leverans: På 3-5 arbetsdagar',
                     paymentMethod: null,
                     cardNumber: null,
                     subscribeEmail: null,
@@ -79,11 +80,24 @@ function goTo(url) {
             localStorage.setItem("tekniktajm", JSON.stringify(order));
         }
 
-        // ============================================================= PAYMENT SIDAN ============================================================================
+        // ================================================================= PAYMENT SIDAN ========================================================================
+        // ========================================================================================================================================================
+        //                                          Funktion för att stoppa in data i summeringen på paymentsidan
+        // ========================================================================================================================================================
+
+        function setPaymentSummary(){
+            $('.numberProducts').find('p').last().text(order.totalPrice.numberProducts);
+            $('.shippingFee').find('p').first().text(order.deliveryMethod);
+            $('.shippingFee').find('p').last().text(order.totalPrice.shippingFee);
+            $('.totalPrice2').find('div').find('p').text(order.totalPrice.totalCost +' SEK');
+
+        }
+
         // ========================================================================================================================================================
         //                                      Eventhandler för när man matar in kreditkortsnumret på payment-sidan
         //                              funktionen formaterar om formatet i inputen så att det visas enligt mönstret: "1111 2222 3333 4444"
         // ========================================================================================================================================================
+
         var $form = $("#form2");
         var $input = $('#cardNumber');
 
@@ -123,22 +137,22 @@ function goTo(url) {
             saveOrder();
         }
 
-        $('#visa').on('click', function () {
+        $('#visaBig').on('click', function () {
             setPaymentMethod("Visa");
             $('#creditCardForm').toggle();
         });
 
-        $('#masterCard').on('click', function () {
+        $('#masterCardBig').on('click', function () {
             setPaymentMethod("MasterCard");
             $('#creditCardForm').toggle();
         });
 
-        $('#amex').on('click', function () {
+        $('#amexBig').on('click', function () {
             setPaymentMethod("American Express");
             $('#creditCardForm').toggle();
         });
 
-        $('#cirrus').on('click', function () {
+        $('#cirrusBig').on('click', function () {
             setPaymentMethod("Cirrus");
             $('#creditCardForm').toggle();
         });
@@ -158,6 +172,7 @@ function goTo(url) {
         // ========================================================================================================================================================
 
         $('#confirm-purchase').on('click', function (event) {
+            debugger;
             date();
             var cardNumber = $input.val().substr(0, 5) + " **** **** " + $input.val().substr(15);
             var orderId = generateOrderId();
@@ -171,10 +186,14 @@ function goTo(url) {
         });
 
         $('#payPalSubmit').on('click', function () {
-            localStorage.setItem('paymentMethod', paymentMethod);
-            localStorage.removeItem('cardNumber');
+            debugger;
+            date();
+            order.cardNumber = ''
             var orderId = generateOrderId();
-            localStorage.setItem('orderId', orderId);
+            order.orderId = orderId;
+            saveOrder();
+            sendMail();
+            window.location.href = 'order_confirmation.html';
         });
 
         // ========================================================================================================================================================
@@ -189,9 +208,11 @@ function goTo(url) {
         //                                                            Funktion för att generera orderdatum
         // ========================================================================================================================================================
         function date() {
+            debugger;
             var date = new Date();
             var year = date.getFullYear();
-            var month = date.getMonth();
+            var month = 1 + date.getMonth();
+            console.log(month);
             var day = date.getDate();
             order.orderDate = `${year}-${month}-0${day}`
             saveOrder();
@@ -230,7 +251,7 @@ function goTo(url) {
             $('#orderConf_otherInfo').text(order.buyer.otherInfo);
 
             $('#orderConf_numberProducts').text(order.totalPrice.numberProducts + ' st');
-            $('#orderConf_shippingFee').text(order.totalPrice.shippingFee + ' SEK');
+            $('#orderConf_shippingFee').text(order.totalPrice.shippingFee);
             $('#orderConf_totalCost').text(order.totalPrice.totalCost + ' SEK');
 
             createElements();
@@ -240,7 +261,7 @@ function goTo(url) {
         //                              Funktion för att skapa alla elementen med de köpta produkterna på vår orderbekräftelse-sida 
         // ========================================================================================================================================================
         function createElements() {
-
+            debugger;
             for (var i = 0; i < order.items.length; i++) {
                 var item = order.items[i];
 
@@ -252,11 +273,11 @@ function goTo(url) {
                     + '</tr>'
                 $('#orderConf_table').append(productInfo);
 
-                var productInfo2 = `<div class="checkoutProduct">`
-                    + `<div class="justifyStart"><div><img class="checkoutPrImg" src="${item.productImage}" /></div><div><p id="orderConf_PrName" class="name">${item.productName}</p><p class="ref">${item.ref}</p><p>Antal: ${item.number}</p></div></div>`
-                    + `<div><p class="price">${item.price} SEK</p></div>`
-                    + `</div>`
-                $('#orderConf_checkoutProduct').append(productInfo2);
+                // var productInfo2 = `<div class="checkoutProduct">`
+                //     + `<div class="justifyStart"><div><img class="checkoutPrImg" src="${item.productImage}" /></div><div><p id="orderConf_PrName" class="name">${item.productName}</p><p class="ref">${item.ref}</p><p>Antal: ${item.number}</p></div></div>`
+                //     + `<div><p class="price">${item.price} SEK</p></div>`
+                //     + `</div>`
+                // $('#orderConf_checkoutProduct').append(productInfo2);
             }
         }
 
@@ -268,9 +289,10 @@ function goTo(url) {
             var products = '';
             for (var i = 0; i < order.items.length; i++) {
                 var item = order.items[i];
+                var image = item.productImage.replace('file:///C:/Users/AK/HTMLprojekt/tekniktajm/', '');
 
                 var productInfo = '<tr class="tableRow">'
-                    + `<td><img class="checkoutPrImg" src="https://ideline.github.io/tekniktajm/${item.productImage}" /></td>`
+                    + `<td><img class="checkoutPrImg" src="https://ideline.github.io/tekniktajm/${image}" /></td>`
                     + `<td>${item.productName}<p class="ref">${item.ref}</p></td>`
                     + `<td><p>${item.number}</p></td>`
                     + `<td class="alignRight">${item.price} SEK</td>`
@@ -278,12 +300,12 @@ function goTo(url) {
 
                 products += productInfo;
 
-                var productInfo2 = `<div class="checkoutProduct">`
-                    + `<div class="justifyStart"><div><img class="checkoutPrImg" src="https://ideline.github.io/tekniktajm/${item.productImage}" /></div><div><p id="orderConf_PrName" class="name">${item.productName}</p><p class="ref">${item.ref}</p><p>Antal: ${item.number}</p></div></div>`
-                    + `<div><p class="price">${item.price} SEK</p></div>`
-                    + `</div>`
+                // var productInfo2 = `<div class="checkoutProduct">`
+                //     + `<div class="justifyStart"><div><img class="checkoutPrImg" src="https://ideline.github.io/tekniktajm/${item.productImage}" /></div><div><p id="orderConf_PrName" class="name">${item.productName}</p><p class="ref">${item.ref}</p><p>Antal: ${item.number}</p></div></div>`
+                //     + `<div><p class="price">${item.price} SEK</p></div>`
+                //     + `</div>`
 
-                products += productInfo2;
+                // products += productInfo2;
             }
 
             return products;
@@ -319,7 +341,7 @@ function goTo(url) {
                             .replace('[FIRSTNAME]', order.buyer.firstName).replace('[LASTNAME]', order.buyer.lastName).replace('[STREETNAME]', order.buyer.streetName)
                             .replace('[STREETNUMBER]', order.buyer.streetNumber).replace('[ZIPCODE]', order.buyer.zipCode).replace('[CITY]', order.buyer.city)
                             .replace('[PHONENUMBER]', order.buyer.phoneNumber).replace('[EMAIL]', order.buyer.email).replace('[OTHER]', order.buyer.otherInfo)
-                            .replace('[NUMBERPRODUCTS]', `${order.totalPrice.numberProducts} st`).replace('[SHIPPINGFEE]', `${order.totalPrice.shippingFee} SEK`)
+                            .replace('[NUMBERPRODUCTS]', `${order.totalPrice.numberProducts} st`).replace('[SHIPPINGFEE]', `${order.totalPrice.shippingFee}`)
                             .replace('[TOTALCOST]', `${order.totalPrice.totalCost} SEK`).replace('[PRODUCTS]', createElements2())
 
                     },
@@ -468,7 +490,7 @@ function goTo(url) {
             e.preventDefault();
 
             if (e.keyCode == 13) {
-                var searchResults = [];
+                var searchResults = []; //OBS OBS OBS OBS OBS DENNA MÅSTE KANSKE ÄVEN SKAPAS HÖGST UPP I KODEN????? (problem när local storage clearas)
                 var noMatch = true;
                 var newMatch = true;
                 //debugger;
@@ -622,21 +644,21 @@ function goTo(url) {
         //                                              Funktion som skapar element i vår tabell i checkouten
         //=================================================================================================================================================
         function createCheckoutElements() {
-            debugger;
+            //debugger;
             for (var i = 0; i < order.items.length; i++) {
                 var item = order.items[i];
                 // Räknar ut det totala priset för en produkt (det kan finnas flera av samma)
                 var totalProductPrice = (parseInt(item.price.replace(' ', '')) * parseInt(item.number)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
                 order.items[i].totalPrice = totalProductPrice;
 
-                var productInfo = '<tr class="tableRow">'
+                var productInfo4 = '<tr class="tableRow">'
                     + `<td><img class="checkoutPrImg" src="${item.productImage}" /></td>`
                     + `<td>${item.productName}<p class="ref">${item.ref}</p></td>`
                     + `<td><input class="chooseNr" value="${item.number}" type="number" min="1" max="10" /></td>`
                     + `<td class="alignRight"><p class="font18">${totalProductPrice} SEK</p><p>(${item.price} SEK)</p></td>`
                     + `<td class="right"><img id="trash" src="style/img/delete2.png" /></td>`
                     + '</tr>'
-                $('.checkoutTable').append(productInfo);
+                $('#appendTableHere').append(productInfo4);
 
                 // OBS OBS!!!! Denna kod ska fixas till sen så att vi kan göra checkouten responsiv!!!!!!
                 // var productInfo2 = `<div class="checkoutProduct">`
@@ -699,14 +721,14 @@ function goTo(url) {
             $('.totalPrice').find('p').text(`${order.totalPrice.totalPrice} SEK`);// Formaterar om totalpriset med space vid tusental
 
             if (parseInt((order.totalPrice.totalPrice).replace(' ', '')) >= 1000) { // om totalpriset är 1000 sek eller högre så är det gratis frakt 
-                $('.shippingFee').find('p').last().text('0,00 SEK');
+                $('.suggestedShippingFee').find('p').last().text('0,00 SEK');
             }
             else { // annars sätter vi ett defaultfraktpris som är vår standardleverans
-                $('.shippingFee').find('p').last().text('49,00 SEK');
+                $('.suggestedShippingFee').find('p').last().text('49,00 SEK');
             }
         }
         //=================================================================================================================================================
-        //                                          Eventhandler för att öka antalet av samma vara i checkouten
+        //                                          Eventhandlers för att öka antalet av samma vara i checkouten
         //=================================================================================================================================================
 
         $('.chooseNr').on('click', function () {
@@ -732,6 +754,39 @@ function goTo(url) {
         });
 
 
+
+        //=================================================================================================================================================
+        //                                  Eventhandler för om man istället använder tangentbordet för att välja antal
+        //=================================================================================================================================================
+
+        $('.chooseNr').on("keyup", function (event) {
+
+            var newNumber = $(this).val();
+            var thisRef = $(this).parent().parent().find('.ref').text(); // Sen letas artikelnumret upp för den produkten
+            var index;
+
+            if (newNumber === '') {
+                $(this).parent().next().find('.font18').text(` SEK`);
+            }
+            else {
+                for (var i = 0; i < order.items.length; i++) { // Man loopar igenom orderlistan och matchar artikelnumren mot varandra
+                    var matchRef = order.items[i].ref;
+                    if (thisRef === matchRef) { // Om man hittar en matchning så sätter m an index till artikelnumrets index
+                        index = i;
+                        i = order.items.length;
+                    }
+                }
+                //Nu när vi vet vilket index produkten har i listan så kan vi ändra number på den produkten till det vi har valt
+                order.items[index].number = newNumber;
+                totalPricePerProduct(); // Vi räknar ut nytt totalpris för just den produkten
+                saveOrder();
+                //debugger;
+                $(this).parent().next().find('.font18').text(`${order.items[index].totalPrice} SEK`); // och ändrar priset i tabellen
+                setCheckoutSummary(); // och ändrar i summeringen
+            }
+        });
+
+
         //=================================================================================================================================================
         //                                              Eventhandler för att ta bort en vara från checkouten
         //=================================================================================================================================================
@@ -752,9 +807,66 @@ function goTo(url) {
             location.reload(); // reloadar sidan så att den uppdateras
         });
 
+        //=================================================================================================================================================
+        //                                           Eventhandler för att lägga till vald leveransmetod i ordern
+        //=================================================================================================================================================
+
+        $('.radioButton').click(function () {
+            if ($('.option-input').is(':checked')) {
+                debugger;
+                order.deliveryMethod = (`${$(this).find('div').find('h3').text()} ${$(this).find('div').find('p').text()}`);
+                var shipFee = $(this).siblings().find('p').text();
+
+                if (shipFee === 'Kostnadsfri') {
+                    order.totalPrice.shippingFee = '0,00 SEK'
+                }
+                else {
+                    order.totalPrice.shippingFee = shipFee;
+                }
+                saveOrder();
+            }
+        });
+
+        //=================================================================================================================================================
+        //                                                      Eventhandler för "Gå vidare-knappen"
+        //=================================================================================================================================================
+
+        $('#continueToPayment').on('click', function (ebola) {
+
+            ebola.preventDefault();
+
+            order.buyer.phoneNumber = $('#checkoutPhoneNumber').val();
+            order.buyer.email = $('#checkoutEmail').val();
+            order.buyer.firstName = $('#checkoutFirstName').val();
+            order.buyer.lastName = $('#checkoutLastName').val();
+            order.buyer.streetName = $('#checkoutAddress').val();
+            order.buyer.streetNumber = $('#checkoutStreetNumber').val();
+            order.buyer.zipCode = $('#checkoutZip').val();
+            order.buyer.city = $('#checkoutCity').val();
+            order.buyer.otherInfo = $('#checkoutInfoText').val();
+
+            totalCost();
+            saveOrder();
+            window.location.href = 'payment.html';
+
+        });
+
+        function totalCost() {
+            debugger;
+            var totalPriceInt = parseInt((order.totalPrice.totalPrice).replace(' ', ''));
+            var shipFee = parseInt((order.totalPrice.shippingFee).replace(',00 SEK', ''));
+
+            if (parseInt(totalPriceInt) >= 1000 && shipFee !== 99) {
+                order.totalPrice.shippingFee = '0,00 SEK';
+                shipFee = 0;
+            }
+
+            order.totalPrice.totalCost = (totalPriceInt + shipFee).toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+        }
+
 
         //*********************************************************************************************************************************************
-        //                                            KOD JAG EXPERIMENTERAR MED FÖR TILLFÄLLET STRUNTA I DEN
+        //                                              KOD JAG EXPERIMENTERAR MED FÖR TILLFÄLLET STRUNTA I DEN
         //*********************************************************************************************************************************************
 
         // $('.searchBox').on('keyup', function (e) {

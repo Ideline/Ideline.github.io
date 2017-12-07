@@ -56,7 +56,7 @@
                     <th class="right">PRIS</th>
                     <th class="right">TA BORT</th>
                 </thead>
-                <tbody>
+                <tbody id="appendTableHere">
                     <!-- Här stoppar funktionen createCheckoutElements() in de produkterna som är tillagda i kundvagnen -->
                 </tbody>
             </table>
@@ -107,7 +107,7 @@
                 <p>Totalt antal produkter:</p>
                 <p id="totalNumberProducts"></p>
             </div>
-            <div class="shippingFee">
+            <div class="suggestedShippingFee">
                 <p>Uppskattad fraktavgift:</p>
                 <p></p>
             </div>
@@ -136,12 +136,12 @@
                     </div>
                 </label>
                 <div class="deliveryPrice">
-                    <h3>Kostnadsfri</h3>
+                    <p class="bold18">Kostnadsfri</p>
                 </div>
             </div>
             <div class="deliveryChoise">
                 <label class="radioButton">
-                    <input type="radio" class="option-input radio" name="example" />
+                    <input type="radio" class="option-input radio" name="example" checked />
                     <div>
                         <h3>Standard Hem Leverans:</h3>
                         <p>På 3-5 arbetsdagar</p>
@@ -154,7 +154,7 @@
             </div>
             <div class="deliveryChoise">
                 <label class="radioButton">
-                    <input type="radio" class="option-input radio" name="example" checked />
+                    <input type="radio" class="option-input radio" name="example" />
                     <div>
                         <h3>Express Hem Leverans:</h3>
                         <p>På 1-2 arbetsdagar</p>
@@ -185,25 +185,25 @@
                 <div>
                     <h3>KONTAKTUPPGIFTER</h3>
                 </div>
-                <input class="checkoutInput" type="text" required minlength="8" pattern="[0-9]*" placeholder="Telefonnummer*" />
-                <input class="checkoutInput" type="email" name="email" placeholder="Epost*" required />
+                <input id="checkoutPhoneNumber" class="checkoutInput" type="text" required minlength="8" pattern="[0-9]*" placeholder="Telefonnummer*" />
+                <input id="checkoutEmail" class="checkoutInput" type="email" name="email" placeholder="Epost*" required />
                 <div>
                     <h3>LEVERANSUPPGIFTER</h3>
                 </div>
-                <input class="checkoutInput" type="text" required minlength="2" maxlength="30" pattern="[a-zA-Z -åäö]*" placeholder="Förnamn*"
+                <input id="checkoutFirstName" class="checkoutInput" type="text" required minlength="2" maxlength="30" pattern="[a-zA-Z -åäö]*" placeholder="Förnamn*"
                 />
-                <input class="checkoutInput" type="text" required minlength="2" maxlength="30" pattern="[a-zA-Z -åäö]*" placeholder="Efternamn*"
+                <input id="checkoutLastName" class="checkoutInput" type="text" required minlength="2" maxlength="30" pattern="[a-zA-Z -åäö]*" placeholder="Efternamn*"
                 />
-                <input class="checkoutInput" type="text" required minlength="3" maxlength="30" pattern="[a-zA-Z -åäö]*" placeholder="Gatuadress*"
+                <input id="checkoutAddress" class="checkoutInput" type="text" required minlength="3" maxlength="30" pattern="[a-zA-Z -åäö]*" placeholder="Gatuadress*"
                 />
-                <input class="checkoutInput" type="text" required minlength="1" maxlength="6" pattern="[[0-9]+ [a-zA-Z -]*]" placeholder="Gatunummer*"
+                <input id="checkoutStreetNumber" class="checkoutInput" type="text" required minlength="1" maxlength="6" pattern="[[0-9]*]" placeholder="Gatunummer*"
                 />
-                <input class="checkoutInput" type="text" required minlength="5" maxlength="5" pattern="[0-9]*" placeholder="Postnummer*"
+                <input id="checkoutZip" class="checkoutInput" type="text" required minlength="5" maxlength="5" pattern="[0-9]*" placeholder="Postnummer*"
                 />
-                <input class="checkoutInput" required minlength="2" pattern="[a-zA-Z åäö]*" placeholder="Stad*" />
-                <textarea class="checkoutText" placeholder="Övrig info" maxlength="255"></textarea>
+                <input id="checkoutCity" class="checkoutInput" required minlength="2" pattern="[a-zA-Z åäö]*" placeholder="Stad*" />
+                <textarea id="checkoutInfoText" class="checkoutText" placeholder="Övrig info" maxlength="255"></textarea>
                 <div class="checkoutButton">
-                    <input class="approvePayment" type="submit" name="submit" value="GÅ VIDARE  »" />
+                    <input id="continueToPayment" class="approvePayment" type="submit" name="submit" value="GÅ VIDARE  »" />
                 </div>
             </form>
         </section>

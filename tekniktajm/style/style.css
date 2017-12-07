@@ -972,6 +972,10 @@ body {
         display: none;
     }
 
+    .orderTable{
+        display: none;
+    }
+
     .searchResultTable{
         display: none;
     }
@@ -2168,6 +2172,10 @@ input.chooseNr::-webkit-input-placeholder {
     width: 100%;
 }
 
+.orderTable {
+    display: none;
+}
+
 .searchResultTable{
     border-collapse: collapse;
     width: 100%;
@@ -2177,11 +2185,20 @@ input.chooseNr::-webkit-input-placeholder {
     padding-bottom: 20px;
 }
 
+.orderTable th {
+    padding-bottom: 20px;
+}
+
+
 .searchResultTable th{
     padding-bottom: 20px;
 }
 
 .checkoutTable img {
+    width: 20px;
+}
+
+.orderTable img {
     width: 20px;
 }
 
@@ -2280,6 +2297,13 @@ input.chooseNr::-webkit-input-placeholder {
 }
 
 .shippingFee {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.suggestedShippingFee {
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -2835,6 +2859,11 @@ b.Main {
 
 .bold25{
     font-size: 25px;
+    font-weight: 600;
+}
+
+.bold18{
+    font-size: 18px;
     font-weight: 600;
 }
 
