@@ -11,6 +11,7 @@ function goTo(url) {
     $(function () {
 
         var order = loadOrder();
+        var reviews = loadComments();
         sendOrder();
         //test();
         setPaymentSummary();
@@ -1118,8 +1119,6 @@ function goTo(url) {
         //                                                      Eventhandler för "RECENSIONER OCH KOMMENTARER"
         //=================================================================================================================================================
 
-
-
         $(".wrapStars2").click(function () {
 
             $(".commentSection").toggle();
@@ -1128,6 +1127,141 @@ function goTo(url) {
 
         $(".wrapStars2").css('cursor', 'pointer');
 
+        //=================================================================================================================================================
+        //                                              Funktion för att ladda tidigare kommentarer om det finns några
+        //=================================================================================================================================================
+
+        function loadComments() {
+
+            var previousComments = localStorage.getItem('reviews'); // Skapar en variabel med data hämtad från localstorage
+            // Om det inte finns nån data i localstorage så tilldelas "previousComments" värdet "null"
+            var reviews; // deklarerar en variabel som vi ska returnera ut ur denna funktionen.
+
+            if (previousComments === null) {
+                // Om previousComments är null dvs om det inte finns några tidigare kommentarer (förutom de hårdkodade)
+                reviews = [
+                    //  {
+                    // userName:
+                    // userEmail: 
+                    // comment:
+                    // date:
+                    //  }
+                ]
+                // Den nya kommentaren görs sen om till en sträng och skickas in i localstorage
+                localStorage.setItem('reviews', JSON.stringify(reviews));
+            }
+            else {
+                // Om previousComments innehåller data, dvs om det finns tidigare kommentarer, så stoppar vi in den datan(som vi hämtat från localstorage)
+                // i vår review variabel och returnerar den så att den nu är tillgänglig för alla funktioner i denna filen.
+                reviews = JSON.parse(previousComments);
+            }
+            return reviews;
+        }
+
+        //=================================================================================================================================================
+        //                                              Funktion för att spara ny kommentar
+        //=================================================================================================================================================
+
+        function saveComment() {
+            localStorage.setItem("reviews", JSON.stringify(reviews));
+        }
+
+        //=================================================================================================================================================
+        //                                                      Eventhandler för när man lämnar ett omdömme
+        //=================================================================================================================================================
+
+        $('#sendComment').on('click', function (e) {
+            debugger;
+            e.preventDefault();
+            //var date = commentDate();
+            reviews.push({
+                userName: $('#commentUserName').val(),
+                userEmail: $('#commentEmail').val(),
+                comment: $('#writeComment').val(),
+                date: commentDate(),
+            });
+            $('#commentUserName').val('');
+            $('#commentEmail').val('');
+            $('#writeComment').val('');
+            saveComment();
+            createrCommentElement();
+        });
+        createrCommentElement();
+        //=================================================================================================================================================
+        //                                              Funktion för att generera html element för tillagda kommentarer
+        //=================================================================================================================================================
+
+        function createrCommentElement() {
+            debugger;
+            $('#addNewCommentsHere').html('');
+            for (var i = 0; i < reviews.length; i++) {
+                var newComment = `<div class="first"><div class="comment"><span>${(reviews[i].userName).toUpperCase()} SKRIVER:</span>`
+                    + `<div class="commentDate">${reviews[i].date}</div>`
+                    + `<p>${reviews[i].comment}</p><br></div></div>`
+                    + `<div class="line"></div>`
+                $('#addNewCommentsHere').append(newComment);
+            }
+        }
+
+        //=================================================================================================================================================
+        //                                                  Funktion för att generera datum  för kommentaren
+        //=================================================================================================================================================
+        function commentDate() {
+            var date = new Date();
+            var year = date.getFullYear();
+            var month = date.getMonth();
+            var day = date.getDate();
+            var hour = date.getHours();
+            var min = date.getMinutes();
+
+            if (hour < 10) {
+                hour = '0' + hour;
+            }
+            if (min < 10) {
+                min = '0' + min;
+            }
+
+            switch (month) {
+                case 0:
+                    month = 'JANUARI';
+                    break;
+                case 1:
+                    month = 'FEBRUARI';
+                    break;
+                case 2:
+                    month = 'MARS';
+                    break;
+                case 3:
+                    month = 'APRIL';
+                    break;
+                case 4:
+                    month = 'MAJ';
+                    break;
+                case 5:
+                    month = 'JUNI';
+                    break;
+                case 6:
+                    month = 'JULI';
+                    break;
+                case 7:
+                    month = 'AUGUSTI';
+                    break;
+                case 8:
+                    month = 'SEPTEMBER';
+                    break;
+                case 9:
+                    month = 'OKTOBER';
+                    break;
+                case 10:
+                    month = 'NOVEMBER';
+                    break;
+                case 11:
+                    month = 'DECEMBER';
+                    break;
+            }
+            var myDate = `${day} ${month} ${year} KL. ${hour}.${min}`
+            return myDate;
+        }
 
 
     });

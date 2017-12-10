@@ -139,6 +139,7 @@
 
             <div class="line"></div>
 
+            <div id="addNewCommentsHere"></div>
             <form class="comment2">
 
                 <span>KOMMENTERA</span>
@@ -146,13 +147,13 @@
                 <br>
 
                 <div>
-                    <input class="commentInput" type="text" name="username" placeholder="Användarnamn" required minlength="3" pattern="[a-zA-Z -]*" />
+                    <input id="commentUserName" class="commentInput" type="text" name="username" placeholder="Användarnamn" required minlength="3" pattern="[a-zA-Z -]*" />
                 </div>
 
                 <br/>
 
                 <div>
-                    <input class="commentInput" type="email" name="email" placeholder="Epost" required/>
+                    <input id="commentEmail" class="commentInput" type="email" name="email" placeholder="Epost" required/>
                 </div>
 
                 <br/>
@@ -166,7 +167,7 @@
                 <br/>
 
                 <div class="reply">
-                    <a href="">SKICKA KOMMENTAR</a>
+                    <a id="sendComment" href="">SKICKA KOMMENTAR</a>
                 </div>
                 <br/>
                 <br/>
