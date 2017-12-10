@@ -2508,7 +2508,7 @@ input.chooseNr2::-webkit-input-placeholder {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin-bottom: 100px;
+    margin-bottom: 300px;
     margin-top: 150px;
 }
 
