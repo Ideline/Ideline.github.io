@@ -2966,6 +2966,12 @@ b.Main {
     margin-left: 10%;
 }
 
+.searchSuggestions2{
+    border: 1px solid rgb(175, 175, 175) !important;
+    width: 90% !important;
+    margin-left: 5% !important;
+}
+
 .hitRow:hover {
     background-color: rgb(223, 223, 223);
 }
@@ -3074,120 +3080,120 @@ b.Main {
   /* ----------------------- COMMENT SECTION ----------------------- */
 
 .commentsLink {
-    
-        display: flex;
-        justify-content: center;
-        text-align: right;
-        display: block;
-        padding-bottom: 20px;
-    }
-    
-    
-    .commentSection {
-    
-        display: none;
-    
-    
-    }
-    
-    .first {
-        padding-left: 50px;
-    }
-    
-    .line:after {
-        content: " ";
-        border-bottom: 1px solid #020202;
-        display: block;
-        padding: 10px;
-    }
-    
-    .reply {
-        display: inline-block;
-        border-top: 1.4px solid #333;
-        border-bottom: 1.4px solid #666;
-    }
-    
-    .reply a {
-        color: #202020;
-        text-decoration: none;
-        font-size: 16px;
-        font-family: 'Playfair Display';
-        letter-spacing: 4px;
-        padding: 0 2px 0 2px;
-        line-height: 1.42857;
-        font-style: italic;
-    }
-    
-    .commentsTitle {
-        text-align: center;
-        letter-spacing: 2px;
-        font-size: 18px;
-        margin-top: 40px;
-        font-family: Didot, "Didot LT STD", "Bodoni MT", "Book Antiqua", Garamond, "Times New Roman", serif;
-        font-weight: 500;
-        line-height: 1.1;
-        display: block;
-    }
-    
-    .commentsTitle:after {
-        content: " ";
-        border-bottom: 1px solid #020202;
-        display: block;
-        padding: 10px;
-    }
-    
-    
-    .comments span {
-        font-family: "Libre Baskerville", serif;
-        line-height: 1.42857;
-        color: #202020;
-        font-style: normal;
-        font-size: 15px;
-        font-weight: bold;
-    }
-    
-    .comment {
-        padding-top: 30px;
-    }
-    
-    .comments p {
-        display: block;
-        -webkit-margin-before: 1em;
-        -webkit-margin-after: 1em;
-        -webkit-margin-start: 0px;
-        -webkit-margin-end: 0px;
-        font-family: "Libre Baskerville", serif;
-        font-size: 14px;
-        line-height: 1.42857;
-    }
-    
-    .postComment p {
-        display: block;
-        -webkit-margin-before: 1em;
-        -webkit-margin-after: 1em;
-        -webkit-margin-start: 0px;
-        -webkit-margin-end: 0px;
-        font-family: "Libre Baskerville", serif;
-        font-size: 14px;
-        line-height: 1.42857;
-        color: #202020;
-    }
-    
-    .comment2 {
-    
-        padding-left: 25px;
-    
-    }
-    
-    .comment2 span {
-        letter-spacing: 4px;
-        font-size: 25px;
-        margin-top: 40px;
-        font-family: Didot, "Didot LT STD", "Bodoni MT", "Book Antiqua", Garamond, "Times New Roman", serif;
-        font-weight: 500;
-        line-height: 1.1;
-        display: block;
-        font-style: italic;
-        text-align: center;
-    
-    }
+
+    display: flex;
+    justify-content: center;
+    text-align: right;
+    display: block;
+    padding-bottom: 20px;
+}
+
+
+.commentSection {
+
+    display: none;
+
+
+}
+
+.first {
+    padding-left: 50px;
+}
+
+.line:after {
+    content: " ";
+    border-bottom: 1px solid #020202;
+    display: block;
+    padding: 10px;
+}
+
+.reply {
+    display: inline-block;
+    border-top: 1.4px solid #333;
+    border-bottom: 1.4px solid #666;
+}
+
+.reply a {
+    color: #202020;
+    text-decoration: none;
+    font-size: 16px;
+    font-family: 'Playfair Display';
+    letter-spacing: 4px;
+    padding: 0 2px 0 2px;
+    line-height: 1.42857;
+    font-style: italic;
+}
+
+.commentsTitle {
+    text-align: center;
+    letter-spacing: 2px;
+    font-size: 18px;
+    margin-top: 40px;
+    font-family: Didot, "Didot LT STD", "Bodoni MT", "Book Antiqua", Garamond, "Times New Roman", serif;
+    font-weight: 500;
+    line-height: 1.1;
+    display: block;
+}
+
+.commentsTitle:after {
+    content: " ";
+    border-bottom: 1px solid #020202;
+    display: block;
+    padding: 10px;
+}
+
+
+.comments span {
+    font-family: "Libre Baskerville", serif;
+    line-height: 1.42857;
+    color: #202020;
+    font-style: normal;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.comment {
+    padding-top: 30px;
+}
+
+.comments p {
+    display: block;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    font-family: "Libre Baskerville", serif;
+    font-size: 14px;
+    line-height: 1.42857;
+}
+
+.postComment p {
+    display: block;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    font-family: "Libre Baskerville", serif;
+    font-size: 14px;
+    line-height: 1.42857;
+    color: #202020;
+}
+
+.comment2 {
+
+    padding-left: 25px;
+
+}
+
+.comment2 span {
+    letter-spacing: 4px;
+    font-size: 25px;
+    margin-top: 40px;
+    font-family: Didot, "Didot LT STD", "Bodoni MT", "Book Antiqua", Garamond, "Times New Roman", serif;
+    font-weight: 500;
+    line-height: 1.1;
+    display: block;
+    font-style: italic;
+    text-align: center;
+
+}
