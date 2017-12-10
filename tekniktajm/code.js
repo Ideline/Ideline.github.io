@@ -1,5 +1,5 @@
 function goTo(url) {
-    //debugger;
+
     window.location.href = url;
 }
 
@@ -87,12 +87,12 @@ function goTo(url) {
         //                                          Funktion för att stoppa in data i summeringen på paymentsidan
         // ========================================================================================================================================================
 
-        function setPaymentSummary(){
-            if(order) {
+        function setPaymentSummary() {
+            if (order) {
                 $('.numberProducts').find('p').last().text(order.totalPrice.numberProducts);
                 $('.shippingFee').find('p').first().text(order.deliveryMethod);
                 $('.shippingFee').find('p').last().text(order.totalPrice.shippingFee);
-                $('.totalPrice2').find('div').find('p').text(order.totalPrice.totalCost +' SEK');
+                $('.totalPrice2').find('div').find('p').text(order.totalPrice.totalCost + ' SEK');
             }
         }
 
@@ -175,7 +175,7 @@ function goTo(url) {
         // ========================================================================================================================================================
 
         $('#confirm-purchase').on('click', function (event) {
-            //debugger;
+
             date();
             var cardNumber = $input.val().substr(0, 5) + " **** **** " + $input.val().substr(15);
             var orderId = generateOrderId();
@@ -189,7 +189,7 @@ function goTo(url) {
         });
 
         $('#payPalSubmit').on('click', function () {
-            //debugger;
+
             date();
             order.cardNumber = ''
             var orderId = generateOrderId();
@@ -212,7 +212,7 @@ function goTo(url) {
         //                                                            Funktion för att generera orderdatum
         // ========================================================================================================================================================
         function date() {
-            //debugger;
+
             var date = new Date();
             var year = date.getFullYear();
             var month = 1 + date.getMonth();
@@ -259,7 +259,7 @@ function goTo(url) {
             $('#orderConf_totalCost').text(order.totalPrice.totalCost + ' SEK');
 
             createElements();
-            if(order.finished) {
+            if (order.finished) {
                 localStorage.removeItem('tekniktajm');
                 order = loadOrder();
             }
@@ -269,7 +269,6 @@ function goTo(url) {
         //                              Funktion för att skapa alla elementen med de köpta produkterna på vår orderbekräftelse-sida 
         // ========================================================================================================================================================
         function createElements() {
-            //debugger;
             for (var i = 0; i < order.items.length; i++) {
                 var item = order.items[i];
 
@@ -281,11 +280,11 @@ function goTo(url) {
                     + '</tr>'
                 $('#orderConf_table').append(productInfo);
 
-                // var productInfo2 = `<div class="checkoutProduct">`
-                //     + `<div class="justifyStart"><div><img class="checkoutPrImg" src="${item.productImage}" /></div><div><p id="orderConf_PrName" class="name">${item.productName}</p><p class="ref">${item.ref}</p><p>Antal: ${item.number}</p></div></div>`
-                //     + `<div><p class="price">${item.price} SEK</p></div>`
-                //     + `</div>`
-                // $('#orderConf_checkoutProduct').append(productInfo2);
+                var productInfo2 = `<div class="checkoutProduct">`
+                    + `<div class="justifyStart"><div><img class="checkoutPrImg" src="${item.productImage}" /></div><div><p id="orderConf_PrName" class="name">${item.productName}</p><p class="ref">${item.ref}</p><p>Antal: ${item.number}</p></div></div>`
+                    + `<div><p class="price font18">${item.totalPrice} SEK</p><p>(${item.price} SEK)</p></div>`
+                    + `</div>`
+                $('#orderConf_checkoutProduct').append(productInfo2);
             }
         }
 
@@ -333,7 +332,7 @@ function goTo(url) {
         //                                      Funktion för att skicka ut orderbekräftelsen via mail till kunden
         // ========================================================================================================================================================
         function sendMail() {
-            //debugger;
+
             $.when(getTemplate('order_confirmation_mail.html')).done(function (template) {
                 $.ajax({
                     type: "POST",
@@ -475,7 +474,7 @@ function goTo(url) {
         $('#subscribe').on('click', function (ebola) {
             ebola.preventDefault();
             console.log("tjohej!");
-            //debugger;
+
             order.subscribeEmail = $('#email').val();
             saveOrder();
             sendSubscribeMail();
@@ -494,72 +493,187 @@ function goTo(url) {
         //                                                              Eventhandler för sökrutan
         // ========================================================================================================================================================
 
-        $('.searchBox1').on('keyup', function (e) {
+        $('#searchBox1').on('keyup', function (e) {
             e.preventDefault();
 
-            if (e.keyCode == 13) {
-                var searchResults = []; //OBS OBS OBS OBS OBS DENNA MÅSTE KANSKE ÄVEN SKAPAS HÖGST UPP I KODEN????? (problem när local storage clearas)
-                var noMatch = true;
-                var newMatch = true;
-                //debugger;
-                var searchWord = $('.searchBox1').val().toLowerCase();
-                $('.searchBox1').val('');
-                console.log(searchWord);
-                for (var i = 0; i < 5; i++) {
+            var searchWord = $('#searchBox1').val().toLowerCase();
+            var searchResults = search(searchWord);
+            if (searchWord.length === 0) {
+                $('#searchSuggestions').hide();
+                return;
+            }
 
-                    for (var j = 0; j < items.length; j++) {
+            if (e.keyCode == 13) { // Enter tryck
+                debugger;
+                var hitRows = $('.hitRow');
+                var hasActive2 = hasActive(hitRows);
+                if (!hasActive2) {
+                    if (searchResults && searchResults.length > 0) {
+                        window.location.href = 'searchResults.html';
+                    }
+                    else {
+                        window.location.href = 'noMatch.html';
+                    }
+                }
+                else {
+                    for (var i = 0; i < hitRows.length; i++) {
+                        if ($(hitRows[i]).hasClass('active2')) {
+                            var url = $(hitRows[i]).data('url');
+                            window.location.href = url;
+                        }
+                    }
+                }
+            }
 
-                        switch (i) {
-                            case 0:
-                                var matchWord = items[j].productName.toLowerCase();
-                                break;
-                            case 1:
-                                var matchWord = items[j].ref.toLowerCase();
-                                break;
-                            case 2:
-                                var matchWord = items[j].description1.toLowerCase();
-                                break;
-                            case 3:
-                                var matchWord = items[j].description2.toLowerCase();
-                                break;
-                            case 4:
-                                var matchWord = items[j].description3.toLowerCase();
-                                break;
+            if (e.keyCode === 40) { // Pil ner
+                var hitRows = $('.hitRow');
+                var hasActive2 = hasActive(hitRows);
+                if (hasActive2) {
+                    for (var i = 0; i < hitRows.length; i++) {
+                        if ($(hitRows[i]).hasClass('active2') && i < hitRows.length - 1) {
+                            $(hitRows[i]).removeClass('active2');
+                            $(hitRows[i + 1]).addClass('active2');
+                            break;
                         }
-                        if (searchResults.length !== 0) {
-                            for (var k = 0; k < searchResults.length; k++) {
-                                if (items[j].ref.toLowerCase() === searchResults[k].ref.toLowerCase()) {
-                                    newMatch = false;
-                                }
-                            }
-                            if (newMatch) {
-                                if (matchWord.includes(searchWord)) {
-                                    searchResults.push(items[j]);
-                                    localStorage.setItem("searchResults", JSON.stringify(searchResults)); //flytta till längre ner i funktionen
-                                    console.log(`Matchning index${j}`);
-                                    noMatch = false;
-                                }
+                    }
+                }
+                else {
+                    $(hitRows[0]).addClass('active2');
+                }
+            }
+            else if (e.keyCode === 38) { // Pil  upp
+                var hitRows = $('.hitRow');
+                var hasActive2 = hasActive(hitRows);
+                if (hasActive2) {
+                    for (var i = 0; i < hitRows.length; i++) {
+                        if ($(hitRows[i]).hasClass('active2') && i > 0) {
+                            $(hitRows[i]).removeClass('active2');
+                            $(hitRows[i - 1]).addClass('active2');
+                            break;
+                        }
+                        else if ($(hitRows[i]).hasClass('active2') && i === 0) {
+                            $(hitRows[i]).removeClass('active2');
+                        }
+                    }
+                }
+            }
+
+            else if (searchResults.length > 0) {
+                $('#searchSuggestions').show();
+                var searchSuggestions = '';
+                for (var i = 0; i < searchResults.length; i++) {
+                    searchSuggestions += `<div class="hitRow" data-url="${searchResults[i].url}">${searchResults[i].productName}</div>`
+                    if (i === 9) {
+                        break;
+                    }
+                }
+                $('#searchSuggestions').html(searchSuggestions);
+            }
+            else {
+                $('#searchSuggestions').hide();
+            }
+
+            // ========================================================================================================================================================
+            //                                                    Eventhandler för om man klickar på ett sökförslag
+            // ========================================================================================================================================================
+
+            $('#searchSuggestions').find('.hitRow').on('click', function () {
+                var url = $(this).data('url');
+                window.location.href = url;
+            });
+        });
+
+        // ========================================================================================================================================================
+        //                                                  Funktion för att se om något sökförslag är markerat
+        // ========================================================================================================================================================
+
+        function hasActive(hitRows) {
+            var hasActive2 = false;
+            for (var i = 0; i < hitRows.length; i++) {
+                if ($(hitRows[i]).hasClass('active2')) {
+                    hasActive2 = true;
+                }
+            }
+            return hasActive2;
+        }
+
+
+        // ========================================================================================================================================================
+        //                                                                      Sökfunktion
+        // ========================================================================================================================================================
+
+        function search(searchWord) {
+            var searchResults = [];
+            saveSearch(searchResults);
+
+            var noMatch = true;
+            var newMatch = true;
+
+            //$('#searchBox1').val('');
+            //console.log(searchWord);
+            for (var i = 0; i < 5; i++) {
+
+                for (var j = 0; j < items.length; j++) {
+
+                    switch (i) {
+                        case 0:
+                            var matchWord = items[j].productName.toLowerCase();
+                            break;
+                        case 1:
+                            var matchWord = items[j].ref.toLowerCase();
+                            break;
+                        case 2:
+                            var matchWord = items[j].description1.toLowerCase();
+                            break;
+                        case 3:
+                            var matchWord = items[j].description2.toLowerCase();
+                            break;
+                        case 4:
+                            var matchWord = items[j].description3.toLowerCase();
+                            break;
+                    }
+                    if (searchResults.length !== 0) {
+                        for (var k = 0; k < searchResults.length; k++) {
+                            if (items[j].ref.toLowerCase() === searchResults[k].ref.toLowerCase()) {
+                                newMatch = false;
                             }
                         }
-                        else {
+                        if (newMatch) {
                             if (matchWord.includes(searchWord)) {
                                 searchResults.push(items[j]);
-                                console.log(`Matchning index${j}`);
                                 noMatch = false;
                             }
                         }
                     }
+                    else {
+                        if (matchWord.includes(searchWord)) {
+                            searchResults.push(items[j]);
+                            console.log(`Matchning index${j}`);
+                            noMatch = false;
+                        }
+                    }
                 }
-                if (noMatch) window.location.href = 'noMatch.html';
-                else {
-                    localStorage.setItem("searchResults", JSON.stringify(searchResults));
-                    window.location.href = 'searchResults.html';
-                }
-
             }
-        });
+            saveSearch(searchResults);
+            return searchResults;
+        }
 
+        // ========================================================================================================================================================
+        //                                                           Sparar sökresultaten till localstorage
+        // ========================================================================================================================================================
 
+        function saveSearch(searchResults) {
+            localStorage.setItem("searchResults", JSON.stringify(searchResults));
+        }
+
+        // ========================================================================================================================================================
+        //                                                           Hämtar sökresultaten från localstorage
+        // ========================================================================================================================================================
+
+        function getSearch() {
+            var searchResults = JSON.parse(localStorage.getItem("searchResults"));
+            return searchResults;
+        }
 
         // ========================================================================================================================================================
         //                                                          Genererar tabellen med sökresultaten
@@ -568,25 +682,24 @@ function goTo(url) {
         function createSearchResults() {
 
             var bajstolle = JSON.parse(localStorage.getItem('searchResults'));
-            if(bajstolle) {
+            if (bajstolle) {
                 for (var i = 0; i < bajstolle.length; i++) {
                     var searchResult = bajstolle[i];
-    
-                    var productInfo3 = '<tr class="searchResultTableRow">'
+
+                    var productInfo3 = `<tr class="searchResultTableRow" data-url='${searchResult.url}'>`
                         + `<td><img class="checkoutPrImg" src="${searchResult.productImage}" /></td>`
                         + `<td class="sansSerif18">${searchResult.productName}</td>`
-                        + `<td class="sansSerif15">${searchResult.ref}</td>`
+                        + `<td class="sansSerif15">${searchResult.ref.replace('Artikelnummer: ', '')}</td>`
                         + `<td class="alignRight sansSerif18">${searchResult.price} SEK</td>`
-                        + `<td class="hide">${searchResult.url}</td>`
                         + '</tr>'
-    
+
                     $('#searchResults_table').append(productInfo3);
-    
-                    // var productInfo2 = `<div class="checkoutProduct">`
-                    //     + `<div class="justifyStart"><div><img class="checkoutPrImg" src="${item.productImage}" /></div><div><p id="orderConf_PrName" class="name">${item.productName}</p><p class="ref">${item.ref}</p><p>Antal: ${item.number}</p></div></div>`
-                    //     + `<div><p class="price">${item.price} SEK</p></div>`
-                    //     + `</div>`
-                    // $('#orderConf_checkoutProduct').append(productInfo2);
+
+                    var productInfo5 = `<div class="checkoutProduct">`
+                        + `<div class="justifyStart"><div><img class="checkoutPrImg" src="${searchResult.productImage}" /></div><div><p id="orderConf_PrName" class="name sansSerif">${searchResult.productName}</p><p class="ref sansSerif">${searchResult.ref.replace('Artikelnummer: ', '')}</p></div></div>`
+                        + `<div><p class="price sansSerif">${searchResult.price} SEK</p></div>`
+                        + `</div>`
+                    $('#resultsHere').append(productInfo5);
                 }
             }
         }
@@ -602,7 +715,7 @@ function goTo(url) {
         //                                          ska byta ut detta mot data propen OBS OBS OBS!!!!!!!!!!!!!!!!
         // ========================================================================================================================================================
         $('.searchResultTableRow').on('click', function () {
-            var searchUrl = $(this).find('td').last().text(); // skulle kunnat targetat ett id här istället
+            var searchUrl = $(this).data('url'); // skulle kunnat targetat ett id här istället
             window.location.href = searchUrl;
         });
 
@@ -639,6 +752,7 @@ function goTo(url) {
                     number: '1'/*Här ska bara vara 1 då det blir 1 för varje gång vi trycker på köpknappen*/,
                     price: $('.priceTag').text(),
                     totalPrice: null,
+                    url: window.location.href,
                 })
             }
 
@@ -654,52 +768,105 @@ function goTo(url) {
         //                                              Funktion som skapar element i vår tabell i checkouten
         //=================================================================================================================================================
         function createCheckoutElements() {
-            //debugger;
-            for (var i = 0; i < order.items.length; i++) {
-                var item = order.items[i];
-                // Räknar ut det totala priset för en produkt (det kan finnas flera av samma)
-                var totalProductPrice = (parseInt(item.price.replace(' ', '')) * parseInt(item.number)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
-                order.items[i].totalPrice = totalProductPrice;
 
-                var productInfo4 = '<tr class="tableRow">'
-                    + `<td><img class="checkoutPrImg" src="${item.productImage}" /></td>`
-                    + `<td>${item.productName}<p class="ref">${item.ref}</p></td>`
-                    + `<td><input class="chooseNr" value="${item.number}" type="number" min="1" max="10" /></td>`
-                    + `<td class="alignRight"><p class="font18">${totalProductPrice} SEK</p><p>(${item.price} SEK)</p></td>`
-                    + `<td class="right"><img class="trash" src="style/img/delete2.png" /></td>`
-                    + '</tr>'
-                $('#appendTableHere').append(productInfo4);
 
-                // OBS OBS!!!! Denna kod ska fixas till sen så att vi kan göra checkouten responsiv!!!!!!
-                // var productInfo2 = `<div class="checkoutProduct">`
-                //     + `<div class="justifyStart"><div><img class="checkoutPrImg" src="${item.productImage}" /></div><div><p id="orderConf_PrName" class="name">${item.productName}</p><p class="ref">${item.ref}</p><p>Antal: ${item.number}</p></div></div>`
-                //     + `<div><p class="price">${item.price} SEK</p></div>`
-                //     + `</div>`
-                // $('.checkoutTable').append(productInfo2);
-            }
+            if (order.items.length > 0) {
+                $('#checkoutEmptyMessage').hide();
+                //$('#appendTableHere').html('');
+                for (var i = 0; i < order.items.length; i++) {
+                    var item = order.items[i];
+                    // Räknar ut det totala priset för en produkt (det kan finnas flera av samma)
+                    var totalProductPrice = (parseInt(item.price.replace(' ', '')) * parseInt(item.number)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+                    order.items[i].totalPrice = totalProductPrice;
 
-            //=================================================================================================================================================
-            //                                              Eventhandler för att ta bort en vara från checkouten
-            //=================================================================================================================================================
-            $('.trash').on('click', function () {
-                //debugger;
-                // När man trycker på soptunnan så letar funktionen upp artikelnumret på den produkten man klickar på
-                var refToDelete = $(this).parent().parent().find('.ref').text(); // Denna fick jag ge mig själv en high five på då jag tog den på första försöket haha!!!
-                console.log(refToDelete);
+                    var productInfo4 = `<tr class="tableRow" data-url='${item.url}'>`
+                        + `<td><img class="checkoutPrImg" src="${item.productImage}" /></td>`
+                        + `<td class="linkToProduct">${item.productName}<p class="ref">${item.ref}</p></td>`
+                        + `<td><input class="chooseNr" value="${item.number}" type="number" min="1" max="10" /></td>`
+                        + `<td class="alignRight"><p class="font18">${totalProductPrice} SEK</p><p>(${item.price} SEK)</p></td>`
+                        + `<td class="right"><img class="trash" src="style/img/delete2.png" /></td>`
+                        + '</tr>'
+                    $('#appendTableHere').append(productInfo4);
 
-                for (var i = 0; i < order.items.length; i++) { // Sen loopar man igenom sin order tills man hittar ett matchande artikelnummer
-                    var matchRef = order.items[i].ref;
+                    var productInfo2 = `<div class="checkoutProduct" data-url='${item.url}'>`
+                        + `<div class="justifyStart">`
+                        + `<div><img class="checkoutPrImg" src="${item.productImage}" /></div>`
+                        + `<div><p class="name">${item.productName}</p><p class="ref">${item.ref}</p><input class="chooseNr2" value="${item.number}" type="number" min="1" max="10" /></div>`
+                        + `</div>`
+                        + `<div class="alignRight"><img class="trashImg" src="style/img/delete2.png" /><p class="price font18">${item.totalPrice} SEK</p><p>(${item.price} SEK)</p></div>`
+                        + `</div>`
 
-                    if (matchRef === refToDelete) { // När man hittat matchningen så deletar man det objektet från listan
-                        order.items.splice(i, 1);
-                        i = order.items.length;
-                    }
+                    $('.checkoutTable').after(productInfo2);
                 }
-                saveOrder();
-                location.reload(); // reloadar sidan så att den uppdateras
-            });
 
-            setCheckoutSummary();
+                // ========================================================================================================================================================
+                //                                      Gör så att det blir en pointer när man håller över de olika varorna i checkouten
+                // ========================================================================================================================================================
+                $('.linkToProduct').css('cursor', 'pointer');
+                $('.trashImg').css('cursor', 'pointer');
+
+                // ========================================================================================================================================================
+                //              När man klickar på produktnamnet så hämtar man urlen från det dolda elementet och redirectar till den sidan
+                //                                          ska byta ut detta mot data propen OBS OBS OBS!!!!!!!!!!!!!!!!
+                // ========================================================================================================================================================
+                $('.linkToProduct').on('click', function () {
+                    var checkoutUrl = $(this).parent().data('url'); // skulle kunnat targetat ett id här istället
+                    window.location.href = checkoutUrl;
+                });
+                $('.name').on('click', function () {
+                    //debugger;
+                    var checkoutUrl = $(this).parent().parent().parent().data('url'); // skulle kunnat targetat ett id här istället
+                    window.location.href = checkoutUrl;
+                });
+
+                //=================================================================================================================================================
+                //                                              Eventhandler för att ta bort en vara från checkouten
+                //=================================================================================================================================================
+                $('.trash').on('click', function () {
+                    // När man trycker på soptunnan så letar funktionen upp artikelnumret på den produkten man klickar på
+                    var refToDelete = $(this).parent().parent().find('.ref').text();
+                    console.log(refToDelete);
+
+                    for (var i = 0; i < order.items.length; i++) { // Sen loopar man igenom sin order tills man hittar ett matchande artikelnummer
+                        var matchRef = order.items[i].ref;
+
+                        if (matchRef === refToDelete) { // När man hittat matchningen så deletar man det objektet från listan
+                            order.items.splice(i, 1);
+                            i = order.items.length;
+                        }
+                    }
+                    saveOrder();
+                    // if(order.items.lenght === 0){
+                    //     $('#checkoutEmptyMessage').show();
+                    // }
+                    location.reload(); // reloadar sidan så att den uppdateras
+                    //createCheckoutElements();
+                });
+
+                $('.trashImg').on('click', function () {
+                    // När man trycker på soptunnan så letar funktionen upp artikelnumret på den produkten man klickar på
+                    var refToDelete = $(this).parent().parent().find('.ref').text(); // Denna fick jag ge mig själv en high five på då jag tog den på första försöket haha!!!
+                    console.log(refToDelete);
+
+                    for (var i = 0; i < order.items.length; i++) { // Sen loopar man igenom sin order tills man hittar ett matchande artikelnummer
+                        var matchRef = order.items[i].ref;
+
+                        if (matchRef === refToDelete) { // När man hittat matchningen så deletar man det objektet från listan
+                            order.items.splice(i, 1);
+                            i = order.items.length;
+                        }
+                    }
+                    saveOrder();
+                    location.reload(); // reloadar sidan så att den uppdateras
+                    //createCheckoutElements();
+                });
+                setCheckoutSummary();
+            }
+            else {
+                $('#checkoutEmptyMessage').show();
+                $('.checkoutTable').hide();
+                setCheckoutSummary();
+            }
         }
 
 
@@ -737,6 +904,9 @@ function goTo(url) {
             for (var i = 0; i < order.items.length; i++) { // loopar igenom listan och hämtar varje produkts totalpris
                 totalP = totalP + parseInt((order.items[i].totalPrice).replace(' ', '')); // vi måste formatera och parsa till int för att kuna göra en korrekt uträkning
             }
+            if (totalP === 0) {
+                totalP = totalP + ',00';
+            }
             order.totalPrice.totalPrice = totalP.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " "); // formaterar tillbaka och stoppar in i ordern
         }
 
@@ -750,12 +920,13 @@ function goTo(url) {
             $('#totalNumberProducts').text(order.totalPrice.numberProducts);
             $('.totalPrice').find('p').text(`${order.totalPrice.totalPrice} SEK`);// Formaterar om totalpriset med space vid tusental
 
-            if (parseInt((order.totalPrice.totalPrice).replace(' ', '')) >= 1000) { // om totalpriset är 1000 sek eller högre så är det gratis frakt 
+            if ((parseInt((order.totalPrice.totalPrice).replace(' ', '')) >= 1000) || order.items.length === 0) { // om totalpriset är 1000 sek eller högre så är det gratis frakt 
                 $('.suggestedShippingFee').find('p').last().text('0,00 SEK');
             }
             else { // annars sätter vi ett defaultfraktpris som är vår standardleverans
                 $('.suggestedShippingFee').find('p').last().text('49,00 SEK');
             }
+
         }
         //=================================================================================================================================================
         //                                          Eventhandlers för att öka antalet av samma vara i checkouten
@@ -778,8 +949,29 @@ function goTo(url) {
             order.items[index].number = newNumber;
             totalPricePerProduct(); // Vi räknar ut nytt totalpris för just den produkten
             saveOrder();
-            //debugger;
             $(this).parent().next().find('.font18').text(`${order.items[index].totalPrice} SEK`); // och ändrar priset i tabellen
+            setCheckoutSummary(); // och ändrar i summeringen
+        });
+
+        $('.chooseNr2').on('click', function () {
+            // när man klickar på "antal-väljaren" så hämtar funktionen värdet som står i den
+            var newNumber = $(this).val();
+            var thisRef = $(this).parent().find('.ref').text(); // Sen letas artikelnumret upp för den produkten
+            console.log(thisRef);
+            var index;
+
+            for (var i = 0; i < order.items.length; i++) { // Man loopar igenom orderlistan och matchar artikelnumren mot varandra
+                var matchRef = order.items[i].ref;
+                if (thisRef === matchRef) { // Om man hittar en matchning så sätter m an index till artikelnumrets index
+                    index = i;
+                    i = order.items.length;
+                }
+            }
+            // Nu när vi vet vilket index produkten har i listan så kan vi ändra number på den produkten till det vi har valt
+            order.items[index].number = newNumber;
+            totalPricePerProduct(); // Vi räknar ut nytt totalpris för just den produkten
+            saveOrder();
+            $(this).parent().parent().siblings().find('.font18').text(`${order.items[index].totalPrice} SEK`); // och ändrar priset i tabellen
             setCheckoutSummary(); // och ändrar i summeringen
         });
 
@@ -810,8 +1002,33 @@ function goTo(url) {
                 order.items[index].number = newNumber;
                 totalPricePerProduct(); // Vi räknar ut nytt totalpris för just den produkten
                 saveOrder();
-                //debugger;
                 $(this).parent().next().find('.font18').text(`${order.items[index].totalPrice} SEK`); // och ändrar priset i tabellen
+                setCheckoutSummary(); // och ändrar i summeringen
+            }
+        });
+
+        $('.chooseNr2').on("keyup", function (event) {
+
+            var newNumber = $(this).val();
+            var thisRef = $(this).parent().find('.ref').text(); // Sen letas artikelnumret upp för den produkten
+            var index;
+
+            if (newNumber === '') {
+                $(this).parent().next().find('.font18').text(` SEK`);
+            }
+            else {
+                for (var i = 0; i < order.items.length; i++) { // Man loopar igenom orderlistan och matchar artikelnumren mot varandra
+                    var matchRef = order.items[i].ref;
+                    if (thisRef === matchRef) { // Om man hittar en matchning så sätter m an index till artikelnumrets index
+                        index = i;
+                        i = order.items.length;
+                    }
+                }
+                //Nu när vi vet vilket index produkten har i listan så kan vi ändra number på den produkten till det vi har valt
+                order.items[index].number = newNumber;
+                totalPricePerProduct(); // Vi räknar ut nytt totalpris för just den produkten
+                saveOrder();
+                $(this).parent().parent().siblings().find('.font18').text(`${order.items[index].totalPrice} SEK`); // och ändrar priset i tabellen
                 setCheckoutSummary(); // och ändrar i summeringen
             }
         });
@@ -822,7 +1039,7 @@ function goTo(url) {
 
         $('.radioButton').click(function () {
             if ($('.option-input').is(':checked')) {
-                //debugger;
+
                 order.deliveryMethod = (`${$(this).find('div').find('h3').text()} ${$(this).find('div').find('p').text()}`);
                 var shipFee = $(this).siblings().find('p').text();
 
@@ -840,9 +1057,7 @@ function goTo(url) {
         //                                                      Eventhandler för "Gå vidare-knappen"
         //=================================================================================================================================================
 
-        $('#continueToPayment').on('click', function (ebola) {
-
-            ebola.preventDefault();
+        $('#continueToPayment').on('click', function () {
 
             order.buyer.phoneNumber = $('#checkoutPhoneNumber').val();
             order.buyer.email = $('#checkoutEmail').val();
@@ -856,7 +1071,7 @@ function goTo(url) {
 
             totalCost();
             saveOrder();
-            window.location.href = 'payment.html';
+            //window.location.href = 'payment.html';
 
         });
 
@@ -872,312 +1087,48 @@ function goTo(url) {
             order.totalPrice.totalCost = (totalPriceInt + shipFee).toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
         }
 
-
-        //*********************************************************************************************************************************************
-        //                                              KOD JAG EXPERIMENTERAR MED FÖR TILLFÄLLET STRUNTA I DEN
-        //*********************************************************************************************************************************************
-
-        // $('.searchBox').on('keyup', function (e) {
-        //     if (e.keyCode === 40) {
-
-        //     }
-        //     else if (e.keyCode === 38) {
-
-        //     }
-        // });
-
-        // // Funktion för att skapa minisökträffselement under sökfältet
-        // function createSearchElements() {
-        //     removeSearchElements();
-        //     //debugger;
-        //     var searchResults = JSON.parse(localStorage.getItem('shortSearchResults'));
-        //     for (var i = 0; i < searchResults.length; i++) {
-
-        //         var searchResult = searchResults[i];
-        //         var productInfo = `<div id="hit${i + 1}" onclick="goTo('${searchResult.url}')" class="hitRow" data-url="${searchResult.url}">${searchResult.productName}</div>`
-
-        //         $('#searchSuggestions').append(productInfo);
-        //         if (i === 9) {
-        //             i = searchResults.length;
-        //         }
-        //     }
-        //     localStorage.removeItem(shortSearchResults);
-        // }
+        //=================================================================================================================================================
+        //                                                      Kod för slidsen på indexsidan
+        //=================================================================================================================================================
 
 
+        var slideIndex = 0;
+        showSlides();
 
-        // function removeSearchElements() {
-        //     $('#searchSuggestions').empty();
-        // }
-        // var shortSearchResults = [];
-        // // Eventhandler för sökrutan 
-        // $('.searchBox1').on('keyup', function (e) {
-        //     e.preventDefault();
-        //     var searchLength = $('.searchBox1').val().length;
-        //     console.log(searchLength);
-        //     if (searchLength >= 3) {
-        //         //debugger;
+        function showSlides() {
+            var i;
+            var slides = $('.slideshow');
+            if (slides.length > 0) {
+                var dots = $('.dot');
+                for (i = 0; i < slides.length; i++) {
+                    $(slides[i]).hide();
+                }
+                slideIndex++;
+                if (slideIndex > slides.length) { slideIndex = 1 }
+                for (i = 0; i < dots.length; i++) {
+                    $(dots[i]).removeClass('active');
+                }
+                $(slides[slideIndex - 1]).show();
+                $(dots[slideIndex - 1]).addClass('active');
+                setTimeout(showSlides, 3500); // Byter bild var 3,5 sekund
+            }
+        }
 
-        //         var partOfSearchWord = $('.searchBox1').val().toLowerCase();
-        //         var noMatch = true;
-        //         var newMatch = true;
-        //         var searchWord = $('.searchBox1').val().toLowerCase();
-        //         console.log(searchWord);
-        //         for (var i = 0; i < 5; i++) {
-
-        //             for (var j = 0; j < items.length; j++) {
-
-        //                 switch (i) {
-        //                     case 0:
-        //                         var matchWord = items[j].productName.toLowerCase();
-        //                         break;
-        //                     case 1:
-        //                         var matchWord = items[j].ref.toLowerCase();
-        //                         break;
-        //                     case 2:
-        //                         var matchWord = items[j].description1.toLowerCase();
-        //                         break;
-        //                     case 3:
-        //                         var matchWord = items[j].description2.toLowerCase();
-        //                         break;
-        //                     case 4:
-        //                         var matchWord = items[j].description3.toLowerCase();
-        //                         break;
-        //                 }
-        //                 if (shortSearchResults.length !== 0) {
-        //                     for (var k = 0; k < shortSearchResults.length; k++) {
-        //                         if (items[j].ref.toLowerCase() === shortSearchResults[k].ref.toLowerCase()) {
-        //                             newMatch = false;
-        //                         }
-        //                     }
-        //                     if (newMatch) {
-        //                         if (matchWord.includes(searchWord)) {
-        //                             shortSearchResults.push(items[j]);
-        //                             localStorage.setItem("shortSearchResults", JSON.stringify(shortSearchResults)); //flytta till längre ner i funktionen
-        //                             console.log(`Matchning index${j}`);
-        //                             noMatch = false;
-        //                         }
-        //                     }
-        //                 }
-        //                 else {
-        //                     if (matchWord.includes(searchWord)) {
-        //                         shortSearchResults.push(items[j]);
-        //                         console.log(`Matchning index${j}`);
-        //                         noMatch = false;
-        //                     }
-        //                 }
-        //             }
-        //         }
-        //         if (noMatch) removeSearchElements();
-        //         else {
-        //             localStorage.setItem("shortSearchResults", JSON.stringify(shortSearchResults));
-        //         }
-        //         createSearchElements();
-        //     }
+        //=================================================================================================================================================
+        //                                                      Eventhandler för "RECENSIONER OCH KOMMENTARER"
+        //=================================================================================================================================================
 
 
 
-        //     if (e.keyCode == 13) {
-        //         var searchResults = [];
-        //         var noMatch = true;
-        //         var newMatch = true;
-        //         //debugger;
-        //         var searchWord = $('.searchBox1').val().toLowerCase();
-        //         $('.searchBox1').val('');
-        //         console.log(searchWord);
-        //         for (var i = 0; i < 5; i++) {
+        $(".wrapStars2").click(function () {
 
-        //             for (var j = 0; j < items.length; j++) {
+            $(".commentSection").toggle();
+            window.location.href = ("#jumpTo");
+        });
 
-        //                 switch (i) {
-        //                     case 0:
-        //                         var matchWord = items[j].productName.toLowerCase();
-        //                         break;
-        //                     case 1:
-        //                         var matchWord = items[j].ref.toLowerCase();
-        //                         break;
-        //                     case 2:
-        //                         var matchWord = items[j].description1.toLowerCase();
-        //                         break;
-        //                     case 3:
-        //                         var matchWord = items[j].description2.toLowerCase();
-        //                         break;
-        //                     case 4:
-        //                         var matchWord = items[j].description3.toLowerCase();
-        //                         break;
-        //                 }
-        //                 if (searchResults.length !== 0) {
-        //                     for (var k = 0; k < searchResults.length; k++) {
-        //                         if (items[j].ref.toLowerCase() === searchResults[k].ref.toLowerCase()) {
-        //                             newMatch = false;
-        //                         }
-        //                     }
-        //                     if (newMatch) {
-        //                         if (matchWord.includes(searchWord)) {
-        //                             searchResults.push(items[j]);
-        //                             localStorage.setItem("searchResults", JSON.stringify(searchResults)); //flytta till längre ner i funktionen
-        //                             console.log(`Matchning index${j}`);
-        //                             noMatch = false;
-        //                         }
-        //                     }
-        //                 }
-        //                 else {
-        //                     if (matchWord.includes(searchWord)) {
-        //                         searchResults.push(items[j]);
-        //                         console.log(`Matchning index${j}`);
-        //                         noMatch = false;
-        //                     }
-        //                 }
-        //             }
-        //         }
-        //         if (noMatch) window.location.href = 'noMatch.html';
-        //         else {
-        //             localStorage.setItem("searchResults", JSON.stringify(searchResults));
-        //             window.location.href = 'searchResults.html';
-        //         }
-
-        //     }
-        // });
+        $(".wrapStars2").css('cursor', 'pointer');
 
 
-        // // Eventhandler för sökrutan 
-        // $('.searchBox1').on('keyup', function (e) {
-        //     e.preventDefault();
-        //     var searchLength = $('.searchBox1').val().length;
-        //     console.log(searchLength);
-        //     if (searchLength >= 3) {
-        //         var shortSearchResults = [];
-        //         //debugger;
-        //         var partOfSearchWord = $('.searchBox1').val().toLowerCase();
-        //         for (var i = 0; i < items.length; i++) {
-        //             var productName = items[i].productName.toLowerCase();
-        //             var ref = items[i].ref.toLowerCase();
-        //             var description1 = items[i].description1.toLowerCase();
-        //             var description2 = items[i].description2.toLowerCase();
-        //             var description3 = items[i].description3.toLowerCase();
-        //             var response;
-        //             if (productName.includes(partOfSearchWord)) {
-        //                 shortSearchResults.push(items[i]);
-        //                 response = productName;
-        //             }
-        //             else if (ref.includes(partOfSearchWord)) {
-        //                 shortSearchResults.push(items[i]);
-        //                 console.log(`Träff på index${i}`);
-        //             }
-        //             else if (description1.includes(partOfSearchWord)) {
-        //                 shortSearchResults.push(items[i]);
-        //                 console.log(`Träff på index${i}`);
-        //             }
-        //             else if (description2.includes(partOfSearchWord)) {
-        //                 shortSearchResults.push(items[i]);
-        //                 console.log(`Träff på index${i}`);
-        //             }
-        //             else if (description2.includes(partOfSearchWord)) {
-        //                 shortSearchResults.push(items[i]);
-        //                 console.log(`Träff på index${i}`);
-        //             }
-        //         }
-        //         localStorage.setItem("shortSearchResults", JSON.stringify(shortSearchResults));
-        //         createSearchElements();
-
-        //     }
-
-        //     if (e.keyCode == 13) {
-        //         var searchResults = [];
-        //         var noMatch = true;
-        //         var newMatch = true;
-        //         //debugger;
-        //         var searchWord = $('.searchBox1').val().toLowerCase();
-        //         $('.searchBox1').val('');
-        //         console.log(searchWord);
-        //         for (var i = 0; i < 5; i++) {
-
-        //             for (var j = 0; j < items.length; j++) {
-
-        //                 switch (i) {
-        //                     case 0:
-        //                         var matchWord = items[j].productName.toLowerCase();
-        //                         break;
-        //                     case 1:
-        //                         var matchWord = items[j].ref.toLowerCase();
-        //                         break;
-        //                     case 2:
-        //                         var matchWord = items[j].description1.toLowerCase();
-        //                         break;
-        //                     case 3:
-        //                         var matchWord = items[j].description2.toLowerCase();
-        //                         break;
-        //                     case 4:
-        //                         var matchWord = items[j].description3.toLowerCase();
-        //                         break;
-        //                 }
-        //                 if (searchResults.length !== 0) {
-        //                     for (var k = 0; k < searchResults.length; k++) {
-        //                         if (items[j].ref.toLowerCase() === searchResults[k].ref.toLowerCase()) {
-        //                             newMatch = false;
-        //                         }
-        //                     }
-        //                     if (newMatch) {
-        //                         if (matchWord.includes(searchWord)) {
-        //                             searchResults.push(items[j]);
-        //                             localStorage.setItem("searchResults", JSON.stringify(searchResults)); //flytta till längre ner i funktionen
-        //                             console.log(`Matchning index${j}`);
-        //                             noMatch = false;
-        //                         }
-        //                     }
-        //                 }
-        //                 else {
-        //                     if (matchWord.includes(searchWord)) {
-        //                         searchResults.push(items[j]);
-        //                         console.log(`Matchning index${j}`);
-        //                         noMatch = false;
-        //                     }
-        //                 }
-        //             }
-        //         }
-        //         if (noMatch) window.location.href = 'noMatch.html';
-        //         else {
-        //             localStorage.setItem("searchResults", JSON.stringify(searchResults));
-        //             window.location.href = 'searchResults.html';
-        //         }
-
-        //     }
-        // });
-
-        // //fixa så att man kan använda pilarna för att selecta vilket sökalternativ man vill välja
-        // $('.searchBox').on('keyup', function (e) {
-        //     if (e.keyCode === 40) {
-
-        //     }
-        //     else if (e.keyCode === 38) {
-
-        //     }
-        // });
-
-
-        // ======================================================================================================================================================
-        //                                                      Kod för att lägga till varor i kundvagnen
-        // ======================================================================================================================================================
-
-        // $('.buyButton').on('click', function () {
-        //     // längst upp i vår kod så har vi "var order = loadOrder();" Den körs så fort vi kommer in på en ny html-sida
-        //     // se loadOrder() funktionen för vidare kommentar.
-
-
-        //     order.items.push({ // Här pushar vi in ett objekt (den produkt där vi har tryckt på "buyButton") i vår items-array som ligger i vårt order-objekt 
-        //         productImage: /*targeta img elementet och hämta src (tips. du behöver använda .prop()*/,
-        //         productName: /*targeta produktnamnet och hämta innehållet. Om det finns mer än ett element på sidan med denna klassen så behöver du först
-        //             targeta första elementet och sen andra och slå ihop de strängarna med ett mellanslag i mellan. Om du bara targetar klassen så hämtar du
-        //             automatiskt datan i bägge elementen och slår ihop dem till en enda sträng,  vilket är okej antar jag, men det blir inget mellanslag
-        //             så det blir lite fult sen när man ska stoppa in strängen i vår checkout*/,
-        //         ref: /*targeta artikelnumret och hämta innehållet du kan sen använda .replace() för att ta bort "Artikelnummer: " så slipper vi ha med den biten
-        //             av strängen sen i vår checkout. Det blir snyggare*/,
-        //         number: /*Här ska bara vara 1 då det blir 1 för varje gång vi trycker på köpknappen*/,
-        //         price: $('.priceTag').text()
-        //     })
-
-        //     saveOrder(); // sparar ordern till localstorage
-        // });
 
     });
 })(jQuery);
