@@ -3197,3 +3197,27 @@ b.Main {
     text-align: center;
 
 }
+
+#writeComment{
+    width: 98%;
+    height: 200px;  
+}
+
+#writeComment::-webkit-input-placeholder {
+    color: rgb(175, 175, 175);
+    padding-left: 10px;
+    font-size: 20px;
+    font-family: 'Times New Roman', Times, serif !important;
+}
+
+.commentInput::-webkit-input-placeholder {
+    color: rgb(175, 175, 175);
+    padding-left: 10px;
+    font-size: 20px;
+    font-family: 'Times New Roman', Times, serif !important;
+}
+
+.commentInput{
+    height: 30px;
+    width: 300px;
+}
