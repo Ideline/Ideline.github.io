@@ -1171,9 +1171,7 @@ function goTo(url) {
         //=================================================================================================================================================
 
         $('#sendComment').on('click', function (e) {
-            debugger;
             e.preventDefault();
-            //var date = commentDate();
             reviews.push({
                 userName: $('#commentUserName').val(),
                 userEmail: $('#commentEmail').val(),
@@ -1192,8 +1190,9 @@ function goTo(url) {
         //=================================================================================================================================================
 
         function createrCommentElement() {
-            debugger;
             $('#addNewCommentsHere').html('');
+            var productName = $('.productInfo').find('p').first().text();
+            $('.commentsTitle').text(`${3 + (reviews.length)} RECENSIONER PÅ ${productName}`);
             for (var i = 0; i < reviews.length; i++) {
                 var newComment = `<div class="first"><div class="comment"><span>${(reviews[i].userName).toUpperCase()} SKRIVER:</span>`
                     + `<div class="commentDate">${reviews[i].date}</div>`
@@ -1202,6 +1201,7 @@ function goTo(url) {
                 $('#addNewCommentsHere').append(newComment);
             }
         }
+        
 
         //=================================================================================================================================================
         //                                                  Funktion för att generera datum  för kommentaren
