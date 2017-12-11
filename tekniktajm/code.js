@@ -219,7 +219,10 @@ function goTo(url) {
             var month = 1 + date.getMonth();
             console.log(month);
             var day = date.getDate();
-            order.orderDate = `${year}-${month}-0${day}`
+            if(day < 10){
+                day = '0' + day;
+            }
+            order.orderDate = `${year}-${month}-${day}`
             saveOrder();
         }
 
@@ -259,11 +262,14 @@ function goTo(url) {
             $('#orderConf_shippingFee').text(order.totalPrice.shippingFee);
             $('#orderConf_totalCost').text(order.totalPrice.totalCost + ' SEK');
 
+            //sendMail();
             createElements();
             if (order.finished) {
                 localStorage.removeItem('tekniktajm');
                 order = loadOrder();
             }
+
+            
         }
 
         // ========================================================================================================================================================
@@ -480,13 +486,6 @@ function goTo(url) {
             saveOrder();
             sendSubscribeMail();
         });
-
-
-
-
-
-
-
 
         //==================================================================== SÖKFUNKTIONEN ======================================================================
         // ========================================================================================================================================================
@@ -1204,7 +1203,7 @@ function goTo(url) {
         
 
         //=================================================================================================================================================
-        //                                                  Funktion för att generera datum  för kommentaren
+        //                                  Funktion för att generera datum för kommentaren (annat format än det vi har högre upp)
         //=================================================================================================================================================
         function commentDate() {
             var date = new Date();
